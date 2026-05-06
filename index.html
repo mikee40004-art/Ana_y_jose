@@ -3,74 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ana y José Tulum - Cinematic Menu</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Ana y José Tulum - Signature Menu</title>
     <style>
         :root { --oro: #8d754a; --oscuro: #2c3e50; --beige: #f9f7f2; --blanco: #ffffff; }
         body { font-family: 'Segoe UI', sans-serif; background-color: var(--beige); margin: 0; padding: 10px; color: #333; padding-bottom: 100px; }
         
-        /* Estenedor Principal */
         .container { max-width: 800px; margin: auto; background: var(--blanco); border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.1); position: relative; }
         
-        /* Banner y Hero */
-        .exchange-banner { background: var(--oscuro); color: white; text-align: center; padding: 8px; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; border-bottom: 2px solid var(--oro); }
-        .hero { width: 100%; height: 250px; background-image: url('https://r2.erweima.ai/i/1000108113.jpg'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; }
-        .logo-overlay { background: rgba(255,255,255,0.85); padding: 20px 40px; border-radius: 10px; text-align: center; border: 1px solid var(--oro); }
-        .logo-overlay h1 { margin: 0; color: var(--oro); letter-spacing: 4px; font-size: 1.6rem; text-transform: uppercase; font-family: 'Times New Roman', serif; }
+        /* Botones VIP Flotantes */
+        .vip-experience-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 2000; width: 90%; max-width: 400px; }
+        .btn-vip { flex: 1; background: var(--oscuro); color: white; border: 1.5px solid var(--oro); padding: 12px 5px; border-radius: 50px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; gap: 5px; transition: 0.3s; }
+        .btn-vip:active { transform: scale(0.95); background: var(--oro); }
 
-        /* Navegación Categorías */
+        .lang-switch { position: fixed; top: 60px; right: 15px; z-index: 1001; background: var(--oro); color: white; border: 2px solid white; padding: 8px 12px; border-radius: 50px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); font-size: 0.8rem; }
+        .exchange-banner { background: var(--oscuro); color: white; text-align: center; padding: 8px; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; border-bottom: 2px solid var(--oro); position: relative; z-index: 1000; }
+        .hero { width: 100%; height: 250px; background-image: url('https://r2.erweima.ai/i/1000108113.jpg'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; }
+        .logo-overlay { background: rgba(255,255,255,0.85); padding: 20px 40px; border-radius: 10px; text-align: center; border: 1px solid var(--oro); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .logo-overlay h1 { margin: 0; color: var(--oro); letter-spacing: 4px; font-size: 1.6rem; text-transform: uppercase; font-family: 'Times New Roman', serif; }
+        .logo-overlay small { display: block; letter-spacing: 2px; color: #666; margin-top: 5px; font-family: 'Times New Roman', serif; font-style: italic; }
+
         .nav-menu { display: flex; overflow-x: auto; gap: 10px; padding: 15px; position: sticky; top: 0; background: white; z-index: 100; border-bottom: 1px solid #eee; scrollbar-width: none; }
         .nav-menu::-webkit-scrollbar { display: none; }
-        .btn-cat { border: 1.5px solid var(--oro); background: white; color: var(--oro); padding: 8px 20px; border-radius: 25px; cursor: pointer; font-weight: bold; white-space: nowrap; font-size: 0.85rem; }
+        .btn-cat { border: 1.5px solid var(--oro); background: white; color: var(--oro); padding: 8px 20px; border-radius: 25px; cursor: pointer; font-weight: bold; white-space: nowrap; transition: 0.3s; font-size: 0.85rem; }
         .btn-cat.active { background: var(--oro); color: white; }
 
-        /* Tarjetas de Platillos */
-        .grid { display: grid; grid-template-columns: 1fr; gap: 20px; padding: 20px; }
+        .content { padding: 20px; }
+        .grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
         @media(min-width: 600px) { .grid { grid-template-columns: 1fr 1fr; } }
         
-        .card { border: 1px solid #eee; border-radius: 12px; overflow: hidden; background: #fff; position: relative; transition: 0.3s; }
-        .card-img { width: 100%; height: 180px; object-fit: cover; }
-        .card-body { padding: 12px; }
-        .card-info { display: flex; justify-content: space-between; font-weight: bold; color: var(--oscuro); }
+        .card { border: 1px solid #eee; border-radius: 12px; overflow: hidden; background: #fff; display: flex; flex-direction: column; transition: 0.3s; }
+        .card-img { width: 100%; height: 160px; object-fit: cover; }
+        .card-body { padding: 12px; flex-grow: 1; }
+        .card-info { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 5px; color: var(--oscuro); }
         .precio { color: var(--oro); }
-        .desc { font-size: 0.8rem; color: #666; font-style: italic; margin: 8px 0; line-height: 1.3; }
-
-        /* Botón Play Cine */
-        .btn-cine-play { position: absolute; top: 12px; left: 12px; background: rgba(255,255,255,0.95); color: var(--oro); border: none; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 10; font-size: 1.2rem; transition: 0.3s; }
-        .btn-cine-play:hover { transform: scale(1.1); background: var(--oro); color: white; }
-
-        /* Modal de Video */
-        .video-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 5000; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
-        .video-window { width: 90%; max-width: 400px; position: relative; border: 2px solid var(--oro); border-radius: 20px; overflow: hidden; background: #000; }
-        .video-window video { width: 100%; display: block; }
-        .btn-close-cine { position: absolute; top: 15px; right: 15px; background: var(--oro); color: white; border: 2px solid white; border-radius: 50%; width: 35px; height: 35px; font-weight: bold; cursor: pointer; z-index: 5001; }
-
-        /* Formulario y Carrito */
-        .canasta { background: #fdfcf9; border-top: 4px solid var(--oro); padding: 25px; }
-        .form-input { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
-        .btn-whatsapp { background: #25D366; color: white; border: none; width: 100%; padding: 18px; border-radius: 12px; font-size: 1.1rem; font-weight: bold; cursor: pointer; margin-top: 20px; }
+        .desc { font-size: 0.8rem; color: #666; font-style: italic; margin-bottom: 10px; line-height: 1.3; }
         
-        /* Botones Flotantes */
-        .lang-switch { position: fixed; top: 60px; right: 15px; z-index: 1001; background: var(--oro); color: white; border: 2px solid white; padding: 8px 12px; border-radius: 50%; font-weight: bold; cursor: pointer; }
-        .vip-experience-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 2000; width: 90%; max-width: 400px; }
-        .btn-vip { flex: 1; background: var(--oscuro); color: white; border: 1.5px solid var(--oro); padding: 12px; border-radius: 50px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
+        textarea { width: 100%; border: none; border-bottom: 1px solid #ddd; padding: 5px 0; font-size: 0.75rem; margin-bottom: 10px; box-sizing: border-box; font-family: inherit; background: transparent; resize: none; font-style: italic; }
+        textarea:focus { outline: none; border-bottom: 1px solid var(--oro); }
+        .btn-add { background: var(--oscuro); color: white; border: none; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.2s; }
+        .btn-add:active { transform: scale(0.98); background: var(--oro); }
 
-        textarea { width: 100%; border: none; border-bottom: 1px solid #ddd; padding: 5px 0; font-size: 0.75rem; margin-bottom: 10px; resize: none; font-style: italic; }
-        .btn-add { background: var(--oscuro); color: white; border: none; padding: 10px; border-radius: 8px; width: 100%; font-weight: bold; cursor: pointer; }
+        .canasta { background: #fdfcf9; border-top: 4px solid var(--oro); padding: 25px; margin-top: 20px; }
+        .form-input { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; background: white; font-size: 1rem; }
+        .total-box { background: white; padding: 18px; border-radius: 10px; border: 1px solid var(--oro); margin: 15px 0; }
+        .total-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9rem; }
+        .total-final { font-size: 1.5rem; font-weight: bold; color: var(--oscuro); border-top: 2px solid var(--oro); margin-top: 10px; padding-top: 10px; }
+        .btn-whatsapp { background: #25D366; color: white; border: none; width: 100%; padding: 18px; border-radius: 12px; font-size: 1.1rem; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(37,211,102,0.3); }
+        .credits { text-align: center; padding: 30px 10px; background: #f4f1ea; border-top: 1px solid #e0ddd5; }
+        .cart-item-note { display: block; font-size: 0.7rem; color: var(--oro); font-style: italic; margin-top: 2px; }
     </style>
 </head>
 <body>
 
-<button class="lang-switch" onclick="toggleLang()" id="langBtn">EN</button>
-
-<div id="videoModal" class="video-overlay" onclick="cerrarCine()">
-    <button class="btn-close-cine">✕</button>
-    <div class="video-window" onclick="event.stopPropagation()">
-        <video id="mainVideo" playsinline loop muted>
-            <source src="" type="video/mp4">
-        </video>
-    </div>
-</div>
+<button class="lang-switch" onclick="toggleLang()" id="langBtn">🇺🇸 EN / 🇲🇽 ES</button>
 
 <div class="container">
     <div class="exchange-banner">Exchange Rate: 1 USD = 18.50 MXN</div>
@@ -80,101 +65,110 @@
             <small>The good life</small>
         </div>
     </div>
-    
     <div class="nav-menu" id="navCats"></div>
-    <div id="menu-grid" class="grid"></div>
+    <div class="content"><div id="menu-grid" class="grid"></div></div>
 
     <div class="canasta">
-        <h3 id="txtFinalizar" style="text-align: center; color: var(--oro);">Finalizar Pedido</h3>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px;">
-            <input type="text" id="guest-name" class="form-input" placeholder="Nombre / Name">
-            <input type="text" id="room-num" class="form-input" placeholder="Hab / Room">
+        <h3 id="txtFinalizar" style="text-align: center;">Finalizar Pedido</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+            <div><label id="lblNombre" style="font-size: 0.75rem; font-weight:bold;">Nombre:</label><input type="text" id="guest-name" class="form-input"></div>
+            <div><label id="lblHab" style="font-size: 0.75rem; font-weight:bold;">Habitación:</label><input type="text" id="room-num" class="form-input" placeholder="00"></div>
         </div>
-        <select id="payment-method" class="form-input">
-            <option value="Cargo a la Habitación">Cargo a la Habitación / Room Charge</option>
-            <option value="Tarjeta">Tarjeta / Credit Card</option>
-            <option value="Efectivo">Efectivo / Cash</option>
-        </select>
-        
-        <div id="cart-list" style="margin-top: 20px;"></div>
+        <div style="margin-bottom: 20px;">
+            <label id="lblPago" style="font-size: 0.75rem; font-weight:bold;">Forma de Pago:</label>
+            <select id="payment-method" class="form-input">
+                <option value="Cargo a la Habitación" id="optCargo">Cargo a la Habitación</option>
+                <option value="Tarjeta (Terminal)" id="optTarjeta">Tarjeta Crédito-Débito</option>
+                <option value="Efectivo MXN">Efectivo (MXN)</option>
+                <option value="Efectivo USD">Efectivo (USD)</option>
+            </select>
+        </div>
+        <div id="cart-list"></div>
         <div id="cart-summary"></div>
-        
         <button class="btn-whatsapp" onclick="enviarPedido()" id="btnSend">Enviar Pedido vía WhatsApp</button>
+    </div>
+
+    <div class="credits">
+        <p style="margin:0; font-size: 0.7rem; color: #888;">Software adaptado para uso en</p>
+        <p style="color: var(--oro); font-weight: bold; font-size: 1rem; margin-top: 5px;">Hotel Boutique Ana y Jose Tulum</p>
+        <p style="font-size: 0.6rem; color: #bbb; margin-top: 5px;">Signature Software © 2026</p>
     </div>
 </div>
 
 <div class="vip-experience-bar">
-    <button class="btn-vip" onclick="irAExperiencia('Spa')">✨ Spa Wellness</button>
+    <button class="btn-vip" onclick="irAExperiencia('Spa')">✨ Spa & Wellness</button>
     <button class="btn-vip" onclick="irAExperiencia('Cena')">🕯️ Cena Romántica</button>
 </div>
 
 <script>
+    const TIPO_CAMBIO = 18.50;
     let currentLang = 'es';
     let carrito = [];
-    const TIPO_CAMBIO = 18.50;
 
     const translations = {
         es: {
-            agregar: "Agregar al Pedido", notas: "Notas adicionales...",
-            cats: ["Desayuno", "Lunch", "Cena", "Spa", "Cenas"],
-            catsID: ["Desayuno", "Lunch", "Cena", "Spa", "Cenas"],
-            cerrado: "CERRADO", soloHorario: "Disponible solo en su horario"
+            finalizar: "Finalizar Pedido", nombre: "Nombre / Name:", hab: "Habitación / Room:", pago: "Forma de Pago:",
+            cargo: "Cargo a la Habitación", tarjeta: "Tarjeta Crédito-Débito", enviar: "Enviar Pedido vía WhatsApp",
+            sub: "Subtotal", serv: "Servicio (15%)", tot: "Total a Pagar", vaciar: "🗑 Vaciar Canasta", agregar: "Agregar al Pedido",
+            notas: "Instrucciones o fecha/hora...", cats: ["Desayuno", "Lunch", "Cena", "Postre", "Bebidas", "Spa", "Cenas"],
+            catsID: ["Desayuno", "Lunch", "Cena", "Postre", "Bebidas", "Spa", "Cenas"],
+            cerrado: "CERRADO / FUERA DE HORARIO", soloHorario: "Disponible solo en su horario"
         },
         en: {
-            agregar: "Add to Order", notas: "Special requests...",
-            cats: ["Breakfast", "Lunch", "Dinner", "Spa", "Dinners"],
-            catsID: ["Desayuno", "Lunch", "Cena", "Spa", "Cenas"],
-            cerrado: "CLOSED", soloHorario: "Available only during hours"
+            finalizar: "Complete Order", nombre: "Name:", hab: "Room Number:", pago: "Payment Method:",
+            cargo: "Room Charge", tarjeta: "Credit/Debit Card", enviar: "Send Order via WhatsApp",
+            sub: "Subtotal", serv: "Service (15%)", tot: "Total to Pay", vaciar: "🗑 Empty Cart", agregar: "Add to Order",
+            notas: "Instructions or date/time...", cats: ["Breakfast", "Lunch", "Dinner", "Dessert", "Drink", "Spa", "Dinners"],
+            catsID: ["Desayuno", "Lunch", "Cena", "Postre", "Bebidas", "Spa", "Cenas"],
+            cerrado: "CLOSED / OUT OF HOURS", soloHorario: "Available only during hours"
         }
     };
 
     const platillos = [
-        { 
-            n_es: "Chilaquiles Tradicionales", n_en: "Traditional Chilaquiles", p: 250, c: "Desayuno", 
-            d_es: "Con salsa verde o roja, crema y queso.", d_en: "Green or red sauce, cream and cheese.",
-            img: "https://i.postimg.cc/wBhR2RDv/IMG-20260430-192623.jpg",
-            vid: "https://assets.mixkit.co/videos/preview/mixkit-chef-preparing-a-dish-in-a-restaurant-kitchen-41009-large.mp4"
-        },
-        { 
-            n_es: "Hamburguesa Signature", n_en: "Signature Burger", p: 545, c: "Lunch", 
-            d_es: "Carne Angus y queso fundido.", d_en: "Angus beef and melted cheese.",
-            img: "https://i.postimg.cc/vHs59RTT/SAVE-20260501-175829.jpg",
-            vid: "https://assets.mixkit.co/videos/preview/mixkit-putting-the-top-on-a-delicious-burger-in-a-restaurant-41005-large.mp4"
-        },
-        { 
-            n_es: "Pizza Margarita", n_en: "Margherita Pizza", p: 305, c: "Cena", 
-            d_es: "Tomate fresco y albahaca.", d_en: "Fresh tomato and basil.",
-            img: "https://i.postimg.cc/SxZ9wJr6/IMG-20260501-175052.jpg"
-        },
-        { 
-            n_es: "Masaje Relajante", n_en: "Relaxing Massage", p: 2100, c: "Spa", 
-            d_es: "60 min de paz.", d_en: "60 min of peace.",
-            img: "https://r2.erweima.ai/i/1000108113.jpg"
-        }
+        { n_es: "Fruta tropical Ana y José", n_en: "Ana & José tropical fruit", p: 285, d_es: "Piña, papaya, melón, frutos rojos y granola casera.", d_en: "Fruit and homemade granola.", c: "Desayuno", img: "https://i.postimg.cc/JhwBj5H7/IMG-20260430-192553.jpg" },
+        { n_es: "Chilaquiles verdes o rojos", n_en: "Green or red Chilaquiles", p: 250, d_es: "Crema, aguacate, frijoles negros y brotes.", d_en: "Cream, avocado, black beans and sprouts.", c: "Desayuno", img: "https://i.postimg.cc/wBhR2RDv/IMG-20260430-192623.jpg" },
+        { n_es: "Hamburguesa artesanal", n_en: "Artisanal Burger", p: 545, d_es: "Carne angus, queso gouda y tocino.", d_en: "Angus beef, gouda and bacon.", c: "Lunch", img: "https://i.postimg.cc/vHs59RTT/SAVE-20260501-175829.jpg" },
+        { n_es: "Guacamole del Huerto", n_en: "Garden Guacamole", p: 280, d_es: "Con plátano macho frito y totopos.", d_en: "With fried plantain and totopos.", c: "Lunch", img: "https://i.postimg.cc/Prbxgb9J/Screenshot-2026-05-02-18-05-17-764.jpg" },
+        { n_es: "Pizza Margarita", n_en: "Margherita Pizza", p: 305, d_es: "Tomate fresco, mozzarella y albahaca.", d_en: "Tomato, mozzarella and basil.", c: "Cena", img: "https://i.postimg.cc/SxZ9wJr6/IMG-20260501-175052.jpg" },
+        { n_es: "Textura de Chocolate", n_en: "Chocolate Texture", p: 280, d_es: "Con plátano macho frito y totopos.", d_en: "With fried plantain and totopos.", c: "Postre", img: "https://i.postimg.cc/Prbxgb9J/Screenshot-2026-05-02-18-05-17-764.jpg" },
+        { n_es: "Guacamole del Huerto", n_en: "Garden Guacamole", p: 280, d_es: "Con plátano macho frito y totopos.", d_en: "With fried plantain and totopos.", c: "Bebidas", img: "https://i.postimg.cc/Prbxgb9J/Screenshot-2026-05-02-18-05-17-764.jpg" },
+        { n_es: "Masaje Relajante Ana y José", n_en: "Ana & José Relaxing Massage", p: 2100, d_es: "60 min de relajación profunda con aceites orgánicos.", d_en: "60 min of deep relaxation.", c: "Spa", img: "https://r2.erweima.ai/i/1000108113.jpg" },
+        { n_es: "Cena Romántica frente al Mar", n_en: "Romantic Oceanside Dinner", p: 4800, d_es: "Montaje privado bajo las estrellas, menú de 4 tiempos.", d_en: "Private setup, 4-course menu.", c: "Cenas", img: "https://i.postimg.cc/SxZ9wJr6/IMG-20260501-175052.jpg" }
     ];
 
     function toggleLang() {
         currentLang = currentLang === 'es' ? 'en' : 'es';
-        document.getElementById('langBtn').innerText = currentLang === 'es' ? 'EN' : 'ES';
         updateUI();
     }
 
     function updateUI() {
         const t = translations[currentLang];
+        document.getElementById('txtFinalizar').innerText = t.finalizar;
+        document.getElementById('lblNombre').innerText = t.nombre;
+        document.getElementById('lblHab').innerText = t.hab;
+        document.getElementById('lblPago').innerText = t.pago;
+        document.getElementById('optCargo').innerText = t.cargo;
+        document.getElementById('optTarjeta').innerText = t.tarjeta;
+        document.getElementById('btnSend').innerText = t.enviar;
+        
         const nav = document.getElementById('navCats');
         nav.innerHTML = t.cats.map((catName, i) => `
             <button class="btn-cat ${i===0?'active':''}" onclick="filtrar('${t.catsID[i]}', this)">${catName}</button>
         `).join('');
         filtrar(t.catsID[0], document.querySelector('.btn-cat'));
+        renderCarrito();
     }
 
     function filtrar(cat, btn) {
         const ahora = new Date();
         const horaActual = ahora.getHours() + (ahora.getMinutes() / 60);
+        
         const horarios = {
             "Desayuno": { inicio: 7.5, fin: 11.75, texto: "7:30 AM - 11:45 AM" },
-            "Lunch": { inicio: 11.5, fin: 23.0, texto: "11:30 AM - 1100 PM" },
-            "Cena": { inicio: 18.01, fin: 23.5, texto: "6:01 PM - 11:30 PM" },
+            "Lunch": { inicio: 11.5, fin: 18.0, texto: "11:30 AM - 6:00 PM" },
+            "Cena": { inicio: 18.01, fin: 22.5, texto: "6:01 PM - 10:30 PM" },
+            "Postre": { inicio: 7.5, fin: 23.5, texto: "7:30 AM - 10:30 PM" },
+            "Bebidas": { inicio: 9.0, fin: 23.5, texto: "9:00 AM - 10:30 PM" },
             "Spa": { inicio: 8.0, fin: 21.0, texto: "8:00 AM - 9:00 PM" },
             "Cenas": { inicio: 0.0, fin: 23.9, texto: "Reservas 24h" }
         };
@@ -188,13 +182,12 @@
         const grid = document.getElementById('menu-grid');
         const t = translations[currentLang];
         
-        let banner = `<div style="grid-column: 1/-1; text-align: center; padding: 8px; background: ${estaAbierto ? '#f1f8e9' : '#fff1f1'}; color: ${estaAbierto ? '#2e7d32' : '#c62828'}; border-radius: 8px; font-size: 0.7rem; border: 1px solid">Horario: ${config.texto} ${estaAbierto ? '' : ' - ' + t.cerrado}</div>`;
+        let banner = `<div style="grid-column: 1/-1; text-align: center; padding: 10px; background: ${estaAbierto ? '#f1f8e9' : '#fff1f1'}; color: ${estaAbierto ? '#2e7d32' : '#c62828'}; border-radius: 8px; margin-bottom: 10px; font-size: 0.8rem; border: 1px solid">${currentLang === 'es' ? 'Horario' : 'Hours'}: ${config.texto} ${estaAbierto ? '' : ' - ' + t.cerrado}</div>`;
 
         grid.innerHTML = banner + platillos.filter(p => p.c === cat).map((p, i) => {
             const inputID = `note-${cat}-${i}`;
             return `
-            <div class="card" style="opacity: ${estaAbierto ? '1' : '0.4'};">
-                ${p.vid ? `<button class="btn-cine-play" onclick="verCine('${p.vid}')"><i class="fa-solid fa-play"></i></button>` : ''}
+            <div class="card" style="opacity: ${estaAbierto ? '1' : '0.4'}; pointer-events: ${estaAbierto ? 'auto' : 'none'};">
                 <img src="${p.img}" class="card-img">
                 <div class="card-body">
                     <div class="card-info"><span>${currentLang === 'es' ? p.n_es : p.n_en}</span><span class="precio">$${p.p}</span></div>
@@ -202,70 +195,98 @@
                     ${estaAbierto ? `
                         <textarea id="${inputID}" placeholder="${t.notas}"></textarea>
                         <button class="btn-add" onclick="agregar('${currentLang==='es'?p.n_es:p.n_en}', ${p.p}, '${inputID}')">${t.agregar}</button>
-                    ` : `<p style="color:red; font-size:0.7rem; font-weight:bold; text-align:center;">${t.soloHorario}</p>`}
+                    ` : `<p style="color:red; font-size:0.7rem; font-weight:bold; text-align:center; margin-top:10px;">${t.soloHorario}</p>`}
                 </div>
             </div>`;
         }).join('');
     }
 
-    function verCine(url) {
-        const modal = document.getElementById('videoModal');
-        const video = document.getElementById('mainVideo');
-        video.src = url;
-        modal.style.display = 'flex';
-        video.play();
-    }
-
-    function cerrarCine() {
-        const modal = document.getElementById('videoModal');
-        const video = document.getElementById('mainVideo');
-        video.pause();
-        modal.style.display = 'none';
+    function irAExperiencia(tipo) {
+        const botones = document.querySelectorAll('.btn-cat');
+        botones.forEach(btn => {
+            if(btn.innerText.toUpperCase().includes(tipo.toUpperCase())) {
+                btn.click();
+                btn.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+            }
+        });
+        window.scrollTo({ top: 250, behavior: 'smooth' });
     }
 
     function agregar(nombre, precio, idNota) {
-        const nota = document.getElementById(idNota).value;
+        const nota = document.getElementById(idNota).value.trim();
         carrito.push({ nombre, precio, nota });
-        renderCarrito();
         document.getElementById(idNota).value = "";
+        renderCarrito();
     }
 
     function renderCarrito() {
         const lista = document.getElementById('cart-list');
         const resumen = document.getElementById('cart-summary');
-        if(carrito.length === 0) { lista.innerHTML = ""; resumen.innerHTML = ""; return; }
+        const t = translations[currentLang];
+        if(carrito.length === 0) { lista.innerHTML = `<p style="text-align:center; color:#999; font-style:italic; font-size:0.8rem;">Canasta vacía / Empty cart</p>`; resumen.innerHTML = ""; return; }
         
-        lista.innerHTML = carrito.map((item, i) => `
-            <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #eee; font-size:0.85rem;">
-                <span><strong>${item.nombre}</strong><br><small>${item.nota}</small></span>
-                <span>$${item.precio} <button onclick="carrito.splice(${i},1);renderCarrito()" style="color:red; border:none; background:none;">✕</button></span>
+        lista.innerHTML = `<button onclick="carrito=[];renderCarrito()" style="color:red; border:none; background:none; cursor:pointer; font-size:0.75rem; font-weight:bold; margin-bottom:10px;">${t.vaciar}</button>` + 
+            carrito.map((item, i) => `<div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #eee;">
+                <span><strong>${item.nombre}</strong>${item.nota ? `<span class="cart-item-note">${item.nota}</span>` : ''}</span>
+                <span style="font-size:0.9rem;">$${item.precio} <button onclick="carrito.splice(${i},1);renderCarrito()" style="border:none;background:none;color:red;padding-left:10px;">✕</button></span>
             </div>`).join('');
             
         const sub = carrito.reduce((acc, item) => acc + item.precio, 0);
-        const tot = (sub * 1.15).toFixed(2);
-        resumen.innerHTML = `
-            <div style="margin-top:15px; border-top:2px solid var(--oro); padding-top:10px;">
-                <div style="display:flex; justify-content:space-between;"><strong>TOTAL (Inc. 15% serv):</strong> <strong>$${tot} MXN</strong></div>
-                <div style="text-align:right; font-size:0.7rem;">Aprox. $${(tot/TIPO_CAMBIO).toFixed(2)} USD</div>
-            </div>`;
+        const tot = sub * 1.15;
+        resumen.innerHTML = `<div class="total-box"><div class="total-row"><span>Subtotal:</span><span>$${sub.toFixed(2)}</span></div><div class="total-row total-final"><span>Total (inc. 15%):</span><span>$${tot.toFixed(2)} MXN</span></div><div style="text-align:right; font-size:0.8rem; color:#666;">Aprox. $${(tot/TIPO_CAMBIO).toFixed(2)} USD</div></div>`;
+    }
+function enviarPedido() {
+    const nombre = document.getElementById('guest-name').value;
+    const hab = document.getElementById('room-num').value;
+    const pago = document.getElementById('payment-method').value;
+    
+    if(!nombre || !hab || carrito.length === 0) {
+        return alert(currentLang === 'es' ? "Faltan datos o canasta vacía" : "Missing data or empty cart");
     }
 
-    function enviarPedido() {
-        const nombre = document.getElementById('guest-name').value;
-        const hab = document.getElementById('room-num').value;
-        if(!nombre || !hab || carrito.length === 0) { alert("Datos incompletos"); return; }
-        let msg = `*PEDIDO ANA Y JOSÉ*%0A*Nombre:* ${nombre}%0A*Hab:* ${hab}%0A---%0A`;
-        carrito.forEach(i => msg += `- ${i.nombre} (${i.nota})%0A`);
-        const total = (carrito.reduce((acc, item) => acc + item.precio, 0) * 1.15).toFixed(2);
-        msg += `---%0A*TOTAL:* $${total} MXN`;
-        window.open(`https://wa.me/5219841862451?text=${msg}`, '_blank');
+    // 1. Identificamos si el carrito contiene productos de SPA o de COCINA
+    // Buscamos en el array 'platillos' original para saber la categoría de lo que está en el carrito
+    const tieneSpa = carrito.some(item => {
+        const pOriginal = platillos.find(p => (p.n_es === item.nombre || p.n_en === item.nombre));
+        return pOriginal && pOriginal.c === "Spa";
+    });
+
+    const tieneCocina = carrito.some(item => {
+        const pOriginal = platillos.find(p => (p.n_es === item.nombre || p.n_en === item.nombre));
+        return pOriginal && (pOriginal.c !== "Spa" && pOriginal.c !== "Cenas");
+    });
+
+    // 2. Definimos los números (Cámbialos por los reales)
+    const numCocina = "5219841862451"; 
+    const numSpa = "5219842155420"; // <--- AQUÍ PONES EL NÚMERO DEL SPA
+
+    // 3. Validación de seguridad: No mezclar Spa con Comida en el mismo envío
+    if (tieneSpa && tieneCocina) {
+        alert(currentLang === 'es' ? 
+            "Por favor, envíe primero su pedido de comida y luego su reserva de Spa por separado." : 
+            "Please send your food order first and then your Spa reservation separately.");
+        return;
     }
 
-    function irAExperiencia(tipo) {
-        const btns = document.querySelectorAll('.btn-cat');
-        btns.forEach(b => { if(b.innerText.includes(tipo)) b.click(); });
-        window.scrollTo({ top: 300, behavior: 'smooth' });
-    }
+    // 4. Decidimos el número de destino
+    let numeroDestino = tieneSpa ? numSpa : numCocina;
+
+    // 5. Construcción del mensaje
+    let header = tieneSpa ? "*SPA RESERVATION - ANA Y JOSÉ*" : "*NEW ORDER - ANA Y JOSÉ*";
+    let msg = `${header}%0A*Guest:* ${nombre}%0A*Room:* ${hab}%0A*Payment:* ${pago}%0A---%0A`;
+    
+    carrito.forEach((item, i) => {
+        msg += `${i+1}. *${item.nombre}*%0A`;
+        if(item.nota) msg += `   _Note: ${item.nota}_%0A`;
+    });
+
+    const tot = carrito.reduce((acc, item) => acc + item.precio, 0) * 1.15;
+    msg += `---%0A*TOTAL: $${tot.toFixed(2)} MXN*`;
+
+    window.open(`https://wa.me/${numeroDestino}?text=${msg}`, '_blank');
+}
+
+        
 
     updateUI();
 </script>
