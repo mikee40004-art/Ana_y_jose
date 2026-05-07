@@ -97,7 +97,7 @@
 
 <div class="vip-experience-bar">
     <button class="btn-vip" onclick="irAExperiencia('Spa')">✨ Spa & Wellness</button>
-    <button class="btn-vip" onclick="irAExperiencia('Cena')">🕯️ Cena Romántica</button>
+    <button class="btn-vip" onclick="irAExperiencia('Cena Romántica')">🕯️ Cena Romántica</button>
 </div>
 
 <script>
@@ -110,16 +110,16 @@
             finalizar: "Finalizar Pedido", nombre: "Nombre / Name:", hab: "Habitación / Room:", pago: "Forma de Pago:",
             cargo: "Cargo a la Habitación", tarjeta: "Tarjeta Crédito-Débito", enviar: "Enviar Pedido vía WhatsApp",
             sub: "Subtotal", serv: "Servicio (15%)", tot: "Total a Pagar", vaciar: "🗑 Vaciar Canasta", agregar: "Agregar al Pedido",
-            notas: "Instrucciones o fecha/hora...", cats: ["Desayuno", "Lunch", "Cena", "Postre", "Bebidas", "Spa", "Cenas"],
-            catsID: ["Desayuno", "Lunch", "Cena", "Postre", "Bebidas", "Spa", "Cenas"],
+            notas: "Instrucciones o fecha/hora...", cats: ["Desayuno", "Lunch", "Cena", "Postre", "Bebidas", "Spa", "Cena Romántica"],
+            catsID: ["Desayuno", "Lunch", "Cena", "Postre", "Bebidas", "Spa", "Cena Romántica"],
             cerrado: "CERRADO / FUERA DE HORARIO", soloHorario: "Disponible solo en su horario"
         },
         en: {
             finalizar: "Complete Order", nombre: "Name:", hab: "Room Number:", pago: "Payment Method:",
             cargo: "Room Charge", tarjeta: "Credit/Debit Card", enviar: "Send Order via WhatsApp",
             sub: "Subtotal", serv: "Service (15%)", tot: "Total to Pay", vaciar: "🗑 Empty Cart", agregar: "Add to Order",
-            notas: "Instructions or date/time...", cats: ["Breakfast", "Lunch", "Dinner", "Dessert", "Drink", "Spa", "Dinners"],
-            catsID: ["Desayuno", "Lunch", "Cena", "Postre", "Bebidas", "Spa", "Cenas"],
+            notas: "Instructions or date/time...", cats: ["Breakfast", "Lunch", "Dinner", "Dessert", "Drink", "Spa", "Romantic Dinner"],
+            catsID: ["Desayuno", "Lunch", "Cena", "Postre", "Bebidas", "Spa", "Cena Romántica"],
             cerrado: "CLOSED / OUT OF HOURS", soloHorario: "Available only during hours"
         }
     };
@@ -132,8 +132,8 @@
         { n_es: "Pizza Margarita", n_en: "Margherita Pizza", p: 305, d_es: "Tomate fresco, mozzarella y albahaca.", d_en: "Tomato, mozzarella and basil.", c: "Cena", img: "https://i.postimg.cc/SxZ9wJr6/IMG-20260501-175052.jpg" },
         { n_es: "Textura de Chocolate", n_en: "Chocolate Texture", p: 280, d_es: "Con plátano macho frito y totopos.", d_en: "With fried plantain and totopos.", c: "Postre", img: "https://i.postimg.cc/Prbxgb9J/Screenshot-2026-05-02-18-05-17-764.jpg" },
         { n_es: "Guacamole del Huerto", n_en: "Garden Guacamole", p: 280, d_es: "Con plátano macho frito y totopos.", d_en: "With fried plantain and totopos.", c: "Bebidas", img: "https://i.postimg.cc/Prbxgb9J/Screenshot-2026-05-02-18-05-17-764.jpg" },
-        { n_es: "Masaje Relajante Ana y José", n_en: "Ana & José Relaxing Massage", p: 2100, d_es: "60 min de relajación profunda con aceites orgánicos.", d_en: "60 min of deep relaxation.", c: "Spa", img: "https://r2.erweima.ai/i/1000108113.jpg" },
-        { n_es: "Cena Romántica frente al Mar", n_en: "Romantic Oceanside Dinner", p: 4800, d_es: "Montaje privado bajo las estrellas, menú de 4 tiempos.", d_en: "Private setup, 4-course menu.", c: "Cenas", img: "https://i.postimg.cc/SxZ9wJr6/IMG-20260501-175052.jpg" }
+        { n_es: "Masaje Relajante Ana y José", n_en: "Ana & José Relaxing Massage", p: 2100, d_es: "60 min de relajación profunda con aceites orgánicos. El servicio es por persona.", d_en: "60 min of deep relaxation. The service is for person.", c: "Spa", img: "https://i.postimg.cc/XNDx4vr8/magic-edit-TUFISV9WRFFCMj-Qj-MSM4ODdh-Njg1Yz-U4Mm-I3OGI1ZWY4YWJi-NTI0Yz-Zl-Yz-Fk-My-M0-20260507-0847.jpg" },
+        { n_es: "Cena Romántica frente al Mar", n_en: "Romantic Oceanside Dinner", p: 4800, d_es: "Montaje privado bajo las estrellas, menú de 4 tiempos.", d_en: "Private setup, 4-course menu.", c: "Cena Romántica", img: "https://i.postimg.cc/c15T0JvY/Una-pareja-compartiendo-una-cena-romantica-bajo-las-estrellas-con-antorcha-20260507-084013-0000.jpg" }
     ];
 
     function toggleLang() {
@@ -169,8 +169,8 @@
             "Cena": { inicio: 18.01, fin: 22.5, texto: "6:01 PM - 10:30 PM" },
             "Postre": { inicio: 7.5, fin: 23.5, texto: "7:30 AM - 10:30 PM" },
             "Bebidas": { inicio: 9.0, fin: 23.5, texto: "9:00 AM - 10:30 PM" },
-            "Spa": { inicio: 8.0, fin: 21.0, texto: "8:00 AM - 9:00 PM" },
-            "Cenas": { inicio: 0.0, fin: 23.9, texto: "Reservar 24h con anticipación" }
+            "Spa": { inicio: 0.0, fin: 23.9, texto: "9:00 AM - 17:00 PM / RESERVE AHORA" },
+            "Cena Romántica": { inicio: 0.0, fin: 23.9, texto: "Reserva 24h con anticipación" }
         };
 
         const config = horarios[cat];
@@ -253,7 +253,7 @@ function enviarPedido() {
 
     const tieneCocina = carrito.some(item => {
         const pOriginal = platillos.find(p => (p.n_es === item.nombre || p.n_en === item.nombre));
-        return pOriginal && (pOriginal.c !== "Spa" && pOriginal.c !== "Cenas");
+        return pOriginal && (pOriginal.c !== "Spa" && pOriginal.c !== "Cena Romántica");
     });
 
     // 2. Definimos los números (Cámbialos por los reales)
