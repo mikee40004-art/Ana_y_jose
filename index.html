@@ -115,8 +115,8 @@
         es: {
             finalizar: "Finalizar Pedido", nombre: "Nombre:", hab: "Habitación:", pago: "Forma de Pago:",
             cargo: "Cargo a la Habitación", tarjeta: "Tarjeta Crédito-Débito", enviar: "Enviar vía WhatsApp",
-            sub: "Subtotal", serv: "Servicio incluido", tot: "Total estimado", vaciar: "🗑 Vaciar", agregar: "Agregar",
-            notas: "Notas o términos de cocción...", cats: ["Desayuno", "Lunch", "Cena", "Postre", "Bebidas", "Spa", "Cena Romántica"],
+            sub: "Subtotal", serv: "Servicio incluido", tot: "Total", vaciar: "🗑 Vaciar", agregar: "Agregar",
+            notas: "Notas: ...", cats: ["Desayuno", "Lunch", "Cena", "Postre", "Bebidas", "Spa", "Cena Romántica"],
             catsID: ["Desayuno", "Lunch", "Cena", "Postre", "Bebidas", "Spa", "Cena Romántica"],
             cerrado: "CERRADO", soloHorario: "Disponible en su horario",
             errDatos: "⚠️ Por favor ingresa nombre y habitación", errCarrito: "⚠️ Tu canasta está vacía"
@@ -124,18 +124,17 @@
         en: {
             finalizar: "Complete Order", nombre: "Name:", hab: "Room Number:", pago: "Payment Method:",
             cargo: "Room Charge", tarjeta: "Credit/Debit Card", enviar: "Send via WhatsApp",
-            sub: "Subtotal", serv: "Service charge included", tot: "Estimated Total", vaciar: "🗑 Empty", agregar: "Add to Order",
-            notas: "Notes or doneness level...", cats: ["Breakfast", "Lunch", "Dinner", "Dessert", "Drinks", "Spa", "Romantic Dinner"], 
+            sub: "Subtotal", serv: "Service charge included", tot: "Total", vaciar: "🗑 Empty", agregar: "Add to Order",
+            notas: "Notes:  ...", cats: ["Breakfast", "Lunch", "Dinner", "Dessert", "Drinks", "Spa", "Romantic Dinner"], 
             catsID: ["Desayuno", "Lunch", "Cena", "Postre", "Bebidas", "Spa", "Cena Romántica"],
             cerrado: "CLOSED", soloHorario: "Available only during hours",
             errDatos: "⚠️ Please enter name and room number", errCarrito: "⚠️ Your cart is empty"
         }
     };
 
-    // (Se mantienen tus datos de platillos, solo me aseguro que las imágenes de bebidas no rompan el diseño)
     const platillos = [
         { n_es: "Fruta tropical Ana y José", n_en: "Ana & José tropical fruit", p: 285, d_es: "Piña, papaya, melón, frutos rojos y granola casera.", d_en: "Fruit and homemade granola.", c: "Desayuno", img: "https://i.postimg.cc/JhwBj5H7/IMG-20260430-192553.jpg" },
-        { n_es: "Yogurth griego con frutos rojos", n_en: "Greek yogurth with red berries", p: 295, d_es: "Acompañado de miel agave y nibs de cacao.", d_en: "With agave honey and cacao nibs.", c: "Desayuno", img: " https://i.postimg.cc/Qd67RHbk/IMG-20260501-143852.jpg" },
+        { n_es: "Yogurth griego con frutos rojos", n_en: "Greek yogurth with red berries", p: 295, d_es: "Acompañado de miel agave y nibs de cacao.", d_en: "With agave honey and cacao nibs.", c: "Desayuno", img: "https://i.postimg.cc/Qd67RHbk/IMG-20260501-143852.jpg" },
         { n_es: "Avocado toast Tulum", n_en: "Avocado toast Tulum", p: 350, d_es: "Pan de masa madre, jitomate heirlom, limón curtido y brotes.", d_en: "Sourdough bread, heirlom tomatoe, pickled lemon and sprouts.", c: "Desayuno", img: "https://i.postimg.cc/zGDWtnnJ/IMG-20260501-175132.jpg" },
         { n_es: "Chilaquiles verdes o rojos", n_en: "Green or red chilaquiles", p: 250, d_es: "Crema, aguacate, frijoles negros y brotes.", d_en: "Cream, avocado, black beans and sprouts.", c: "Desayuno", img: "https://i.postimg.cc/wBhR2RDv/IMG-20260430-192623.jpg" },
         { n_es: "Huevos doña Ana", n_en: "Doña Ana eggs", p: 295, d_es: "Sobre sope de maíz azul, frijol colado y salsa de recado negro.", d_en: "Served over a blue corn sope, refried beans and recado negro sauce.", c: "Desayuno", img: "https://i.postimg.cc/htx8dNwQ/IMG-20260216-112705.jpg" },
@@ -226,7 +225,6 @@
         carrito.push({ nombre, precio, nota, categoria });
         document.getElementById(idNota).value = "";
         renderCarrito();
-        // Feedback visual simple
         const btn = event.target;
         const originalText = btn.innerText;
         btn.innerText = "✓ OK";
@@ -266,8 +264,7 @@
             </div>`;
     }
 
-    
-             function enviarPedido() {
+    function enviarPedido() {
         const nom = document.getElementById('guest-name').value.trim();
         const hab = document.getElementById('room-num').value.trim();
         const pago = document.getElementById('payment-method').value;
@@ -292,10 +289,11 @@
             return;
         }
 
+        // LOGÍSTICA NUEVA: Separar Spa de todo lo demás (La cena romántica ahora se queda con cocina)
         const tieneSpa = carrito.some(item => item.categoria === "Spa");
-        const tieneCocina = carrito.some(item => item.categoria !== "Spa" && item.categoria !== "Cena Romántica");
+        const tieneOtros = carrito.some(item => item.categoria !== "Spa"); 
 
-        if (tieneSpa && tieneCocina) {
+        if (tieneSpa && tieneOtros) {
             btn.innerText = currentLang === 'es' ? "⚠️ Envía Spa y Alimentos por separado" : "⚠️ Send Spa and Food separately";
             btn.style.background = "#c62828";
             setTimeout(() => {
@@ -305,9 +303,18 @@
             return;
         }
 
-        // Si todo está bien, procedemos al WhatsApp
+        // Enrutamiento de números (Spa -> ...5420 / Alimentos, Bebidas y Cena Romántica -> ...2451)
         const num = tieneSpa ? "5219842155420" : "5219841862451";
-        let msg = `*${tieneSpa ? 'SPA' : 'ORDEN'} - ANA Y JOSÉ*%0A*Nombre:* ${nom}%0A*Hab:* ${hab}%0A*Pago:* ${pago}%0A---%0A`;
+        
+        // Titulo inteligente para el mensaje de WhatsApp
+        let tipoOrden = "ORDEN";
+        if (tieneSpa) {
+            tipoOrden = "SPA";
+        } else if (carrito.some(item => item.categoria === "Cena Romántica")) {
+            tipoOrden = "CENA ROMÁNTICA";
+        }
+
+        let msg = `*${tipoOrden} - ANA Y JOSÉ*%0A*Nombre:* ${nom}%0A*Hab:* ${hab}%0A*Pago:* ${pago}%0A---%0A`;
         
         carrito.forEach((item, i) => {
             msg += `${i+1}. *${item.nombre}*%0A${item.nota ? `   _Nota: ${item.nota}_%0A` : ''}`;
@@ -318,8 +325,7 @@
         msg += `---%0A*TOTAL: $${(subtotal + serv).toFixed(2)} MXN*`;
 
         window.open(`https://wa.me/${num}?text=${msg}`, '_blank', 'noopener');
-    
-  }
+    }
 
     function irAExperiencia(tipo) {
         const btns = Array.from(document.querySelectorAll('.btn-cat'));
@@ -328,7 +334,6 @@
         window.scrollTo({ top: 150, behavior: 'smooth' });
     }
 
-    // Inicio
     updateUI();
 </script>
 </body>
