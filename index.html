@@ -5,57 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ana y José Tulum - Signature Menu</title>
     <style>
-        :root { --oro: #8d754a; --oscuro: #2c3e50; --beige: #f9f7f2; --blanco: #ffffff; }
-        body { font-family: 'Segoe UI', sans-serif; background-color: var(--beige); margin: 0; padding: 10px; color: #333; padding-bottom: 100px; }
+        :root { --oro: #8d754a; --oscuro: #2c3e50; --beige: #f9f7f2; --blanco: #ffffff; --error: #e74c3c; }
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: var(--beige); margin: 0; padding: 0; color: #333; padding-bottom: 120px; -webkit-tap-highlight-color: transparent; }
         
-        .container { max-width: 800px; margin: auto; background: var(--blanco); border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.1); position: relative; }
+        .container { max-width: 800px; margin: auto; background: var(--blanco); border-radius: 0 0 20px 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
         
-        /* Botones VIP Flotantes */
-        .vip-experience-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 2000; width: 90%; max-width: 400px; }
-        .btn-vip { flex: 1; background: var(--oscuro); color: white; border: 1.5px solid var(--oro); padding: 12px 5px; border-radius: 50px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; gap: 5px; transition: 0.3s; }
+        /* VIP Bar Pulida */
+        .vip-experience-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 2000; width: 92%; max-width: 450px; }
+        .btn-vip { flex: 1; background: var(--oscuro); color: white; border: 1px solid var(--oro); padding: 14px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; cursor: pointer; box-shadow: 0 6px 20px rgba(0,0,0,0.3); transition: 0.3s; }
         .btn-vip:active { transform: scale(0.95); background: var(--oro); }
 
-        .lang-switch { position: fixed; top: 60px; right: 15px; z-index: 1001; background: var(--oro); color: white; border: 2px solid white; padding: 8px 12px; border-radius: 50px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); font-size: 0.8rem; }
-        .exchange-banner { background: var(--oscuro); color: white; text-align: center; padding: 8px; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; border-bottom: 2px solid var(--oro); position: relative; z-index: 1000; }
-        .hero { width: 100%; height: 250px; background-image: url('https://r2.erweima.ai/i/1000108113.jpg'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; }
-        .logo-overlay { background: rgba(255,255,255,0.85); padding: 20px 40px; border-radius: 10px; text-align: center; border: 1px solid var(--oro); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .logo-overlay h1 { margin: 0; color: var(--oro); letter-spacing: 4px; font-size: 1.6rem; text-transform: uppercase; font-family: 'Times New Roman', serif; }
-        .logo-overlay small { display: block; letter-spacing: 2px; color: #666; margin-top: 5px; font-family: 'Times New Roman', serif; font-style: italic; }
+        .lang-switch { position: fixed; top: 20px; right: 15px; z-index: 1001; background: rgba(141, 117, 74, 0.9); color: white; border: 1.5px solid white; padding: 6px 12px; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 0.75rem; backdrop-filter: blur(5px); }
+        
+        .exchange-banner { background: var(--oscuro); color: white; text-align: center; padding: 6px; font-size: 0.7rem; letter-spacing: 1px; border-bottom: 2px solid var(--oro); }
+        
+        .hero { width: 100%; height: 220px; background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://r2.erweima.ai/i/1000108113.jpg'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; }
+        .logo-overlay { background: rgba(255,255,255,0.9); padding: 15px 30px; border-radius: 4px; text-align: center; border: 1px solid var(--oro); }
+        .logo-overlay h1 { margin: 0; color: var(--oro); letter-spacing: 5px; font-size: 1.4rem; text-transform: uppercase; font-family: 'Times New Roman', serif; }
 
-        .nav-menu { display: flex; overflow-x: auto; gap: 10px; padding: 15px; position: sticky; top: 0; background: white; z-index: 100; border-bottom: 1px solid #eee; scrollbar-width: none; }
-        .nav-menu::-webkit-scrollbar { display: none; }
-        .btn-cat { border: 1.5px solid var(--oro); background: white; color: var(--oro); padding: 8px 20px; border-radius: 25px; cursor: pointer; font-weight: bold; white-space: nowrap; transition: 0.3s; font-size: 0.85rem; }
+        .nav-menu { display: flex; overflow-x: auto; gap: 10px; padding: 15px; position: sticky; top: 0; background: white; z-index: 100; border-bottom: 1px solid #eee; scroll-behavior: smooth; }
+        .btn-cat { border: 1px solid var(--oro); background: white; color: var(--oro); padding: 8px 18px; border-radius: 20px; cursor: pointer; font-weight: 600; white-space: nowrap; transition: 0.3s; font-size: 0.8rem; }
         .btn-cat.active { background: var(--oro); color: white; }
 
-        .content { padding: 20px; }
-        .grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .content { padding: 15px; }
+        .grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
         @media(min-width: 600px) { .grid { grid-template-columns: 1fr 1fr; } }
         
-        .card { border: 1px solid #eee; border-radius: 12px; overflow: hidden; background: #fff; display: flex; flex-direction: column; transition: 0.3s; }
-        .card-img { width: 100%; height: 160px; object-fit: cover; }
+        .card { border: 1px solid #eee; border-radius: 15px; overflow: hidden; background: #fff; display: flex; flex-direction: column; transition: transform 0.2s; }
+        .card-img { width: 100%; height: 180px; object-fit: cover; }
         
-        /* Estilo para tarjetas SIN FOTO */
-        .card.no-photo { border-left: 5px solid var(--oro); }
-        .card.no-photo .card-body { padding: 20px 15px; }
+        .card.no-photo { border-left: 4px solid var(--oro); background: #fdfdfd; }
 
-        .card-body { padding: 12px; flex-grow: 1; }
-        .card-info { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 5px; color: var(--oscuro); }
+        .card-body { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-info { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 8px; color: var(--oscuro); font-size: 0.95rem; }
         .precio { color: var(--oro); }
-        .desc { font-size: 0.8rem; color: #666; font-style: italic; margin-bottom: 10px; line-height: 1.3; }
+        .desc { font-size: 0.8rem; color: #666; line-height: 1.4; margin-bottom: 12px; }
         
-        textarea { width: 100%; border: none; border-bottom: 1px solid #ddd; padding: 5px 0; font-size: 0.75rem; margin-bottom: 10px; box-sizing: border-box; font-family: inherit; background: transparent; resize: none; font-style: italic; }
-        textarea:focus { outline: none; border-bottom: 1px solid var(--oro); }
-        .btn-add { background: var(--oscuro); color: white; border: none; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.2s; }
-        .btn-add:active { transform: scale(0.98); background: var(--oro); }
+        textarea { width: 100%; border: 1px solid #eee; border-radius: 8px; padding: 8px; font-size: 0.8rem; margin-bottom: 10px; background: #fcfcfc; resize: none; font-family: inherit; }
+        textarea:focus { outline: none; border-color: var(--oro); background: #fff; }
+        
+        .btn-add { background: var(--oscuro); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.85rem; width: 100%; margin-top: auto; }
 
-        .canasta { background: #fdfcf9; border-top: 4px solid var(--oro); padding: 25px; margin-top: 20px; }
-        .form-input { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; background: white; font-size: 1rem; }
-        .total-box { background: white; padding: 18px; border-radius: 10px; border: 1px solid var(--oro); margin: 15px 0; }
-        .total-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9rem; }
-        .total-final { font-size: 1.5rem; font-weight: bold; color: var(--oscuro); border-top: 2px solid var(--oro); margin-top: 10px; padding-top: 10px; }
-        .btn-whatsapp { background: #25D366; color: white; border: none; width: 100%; padding: 18px; border-radius: 12px; font-size: 1.1rem; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(37,211,102,0.3); }
-        .credits { text-align: center; padding: 30px 10px; background: #f4f1ea; border-top: 1px solid #e0ddd5; }
-        .cart-item-note { display: block; font-size: 0.7rem; color: var(--oro); font-style: italic; margin-top: 2px; }
+        /* Estilos Canasta */
+        .canasta { background: #fdfcf9; border-top: 4px solid var(--oro); padding: 25px 15px; margin-top: 20px; }
+        .form-group { margin-bottom: 15px; }
+        .form-input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; margin-top: 5px; }
+        .form-input.invalid { border-color: var(--error); background-color: #fff6f6; }
+        
+        .total-box { background: white; padding: 20px; border-radius: 12px; border: 1px solid var(--oro); margin: 20px 0; }
+        .total-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem; }
+        .total-final { font-size: 1.3rem; font-weight: bold; color: var(--oscuro); border-top: 1.5px solid #eee; margin-top: 10px; padding-top: 10px; }
+        
+        .btn-whatsapp { background: #25D366; color: white; border: none; width: 100%; padding: 18px; border-radius: 12px; font-size: 1rem; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        
+        /* Animación suave */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .card { animation: fadeIn 0.4s ease forwards; }
     </style>
 </head>
 <body>
@@ -67,20 +72,32 @@
     <div class="hero">
         <div class="logo-overlay">
             <h1>ANA Y JOSÉ</h1>
-            <small>The good life</small>
+            <small style="letter-spacing: 2px; color: #666; font-style: italic;">The good life</small>
         </div>
     </div>
+    
     <div class="nav-menu" id="navCats"></div>
-    <div class="content"><div id="menu-grid" class="grid"></div></div>
+    
+    <div class="content">
+        <div id="menu-grid" class="grid"></div>
+    </div>
 
-    <div class="canasta">
-        <h3 id="txtFinalizar" style="text-align: center;">Finalizar Pedido</h3>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
-            <div><label id="lblNombre" style="font-size: 0.75rem; font-weight:bold;">Nombre:</label><input type="text" id="guest-name" class="form-input"></div>
-            <div><label id="lblHab" style="font-size: 0.75rem; font-weight:bold;">Habitación:</label><input type="text" id="room-num" class="form-input" placeholder="00"></div>
+    <div class="canasta" id="carrito-section">
+        <h3 id="txtFinalizar" style="text-align: center; text-transform: uppercase; letter-spacing: 2px;">Finalizar Pedido</h3>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="form-group">
+                <label id="lblNombre" style="font-size: 0.75rem; font-weight:bold;">Nombre / Name:</label>
+                <input type="text" id="guest-name" class="form-input" placeholder="Ej. John Doe">
+            </div>
+            <div class="form-group">
+                <label id="lblHab" style="font-size: 0.75rem; font-weight:bold;">Habitación / Room:</label>
+                <input type="text" id="room-num" class="form-input" placeholder="000">
+            </div>
         </div>
-        <div style="margin-bottom: 20px;">
-            <label id="lblPago" style="font-size: 0.75rem; font-weight:bold;">Forma de Pago:</label>
+
+        <div class="form-group">
+            <label id="lblPago" style="font-size: 0.75rem; font-weight:bold;">Forma de Pago / Payment:</label>
             <select id="payment-method" class="form-input">
                 <option value="Cargo a la Habitación" id="optCargo">Cargo a la Habitación</option>
                 <option value="Tarjeta (Terminal)" id="optTarjeta">Tarjeta Crédito-Débito</option>
@@ -88,15 +105,17 @@
                 <option value="Efectivo USD">Efectivo (USD)</option>
             </select>
         </div>
+
         <div id="cart-list"></div>
         <div id="cart-summary"></div>
-        <button class="btn-whatsapp" onclick="enviarPedido()" id="btnSend">Enviar Pedido vía WhatsApp</button>
+        
+        <button class="btn-whatsapp" onclick="enviarPedido()" id="btnSend">
+            <span>Enviar Pedido vía WhatsApp</span>
+        </button>
     </div>
 
     <div class="credits">
-        <p style="margin:0; font-size: 0.7rem; color: #888;">Software adaptado para uso en</p>
-        <p style="color: var(--oro); font-weight: bold; font-size: 1rem; margin-top: 5px;">Hotel Boutique Ana y Jose Tulum</p>
-        <p style="font-size: 0.6rem; color: #bbb; margin-top: 5px;">Signature Software © 2026</p>
+        <p style="text-align: center; color: var(--oro); font-weight: bold; font-size: 0.9rem; margin: 20px 0;">Hotel Boutique Ana y Jose Tulum</p>
     </div>
 </div>
 
@@ -106,29 +125,31 @@
 </div>
 
 <script>
+    // --- LÓGICA DE DATOS Y TRADUCCIÓN (Mantenida y extendida) ---
     const TIPO_CAMBIO = 18.50;
     let currentLang = 'es';
     let carrito = [];
 
     const translations = {
         es: {
-            finalizar: "Finalizar Pedido", nombre: "Nombre / Name:", hab: "Habitación / Room:", pago: "Forma de Pago:",
-            cargo: "Cargo a la Habitación", tarjeta: "Tarjeta Crédito-Débito", enviar: "Enviar Pedido vía WhatsApp",
-            sub: "Subtotal", serv: "Servicio (15%)", tot: "Total a Pagar", vaciar: "🗑 Vaciar Canasta", agregar: "Agregar al Pedido",
-            notas: "Notas...", cats: ["Desayuno", "Lunch", "Cena", "Postre", "Bebidas", "Spa", "Cena Romántica"],
+            finalizar: "Finalizar Pedido", nombre: "Nombre:", hab: "Habitación:", pago: "Forma de Pago:",
+            cargo: "Cargo a la Habitación", tarjeta: "Tarjeta Crédito-Débito", enviar: "Enviar vía WhatsApp",
+            sub: "Subtotal", serv: "Servicio incluído", tot: "Total estimado", vaciar: "🗑 Vaciar canasta", agregar: "Agregar",
+            notas: "Notas: ...", cats: ["Desayuno", "Lunch", "Cena", "Postre", "Bebidas", "Spa", "Cena Romántica"],
             catsID: ["Desayuno", "Lunch", "Cena", "Postre", "Bebidas", "Spa", "Cena Romántica"],
-            cerrado: "CERRADO / FUERA DE HORARIO", soloHorario: "Disponible solo en su horario"
+            cerrado: "CERRADO", soloHorario: "Disponible en su horario"
         },
         en: {
             finalizar: "Complete Order", nombre: "Name:", hab: "Room Number:", pago: "Payment Method:",
-            cargo: "Room Charge", tarjeta: "Credit/Debit Card", enviar: "Send Order via WhatsApp",
-            sub: "Subtotal", serv: "Service (15%)", tot: "Total to Pay", vaciar: "🗑 Empty Cart", agregar: "Add to Order",
-            notas: "Grades...", cats: ["Breakfast", "Lunch", "Dinner", "Dessert", "Drink", "Spa", "Romantic Dinner"], 
+            cargo: "Room Charge", tarjeta: "Credit/Debit Card", enviar: "Send via WhatsApp",
+            sub: "Subtotal", serv: "Included service", tot: "Estimated Total", vaciar: "🗑 Empty Cart", agregar: "Add to Order",
+            notas: "Dates:  ...", cats: ["Breakfast", "Lunch", "Dinner", "Dessert", "Drinks", "Spa", "Romantic Dinner"], 
             catsID: ["Desayuno", "Lunch", "Cena", "Postre", "Bebidas", "Spa", "Cena Romántica"],
-            cerrado: "CLOSED / OUT OF HOURS", soloHorario: "Available only during hours"
-        },
+            cerrado: "CLOSED", soloHorario: "Available only during hours"
+        }
     };
 
+    // (Se mantienen tus platillos aquí...)
     const platillos = [
         { n_es: "Fruta tropical Ana y José", n_en: "Ana & José tropical fruit", p: 285, d_es: "Piña, papaya, melón, frutos rojos y granola casera.", d_en: "Fruit and homemade granola.", c: "Desayuno", img: "https://i.postimg.cc/JhwBj5H7/IMG-20260430-192553.jpg" },
         { n_es: "Yogurth griego con frutos rojos", n_en: "Greek yogurth with red berries", p: 295, d_es: "Acompañado de miel agave y nibs de cacao.", d_en: "With agave honey and cacao nibs.", c: "Desayuno", img: " https://i.postimg.cc/Qd67RHbk/IMG-20260501-143852.jpg" },
@@ -153,7 +174,7 @@
         { n_es: "Pizza Caribeña", n_en: "Caribbean pizza", p: 765, d_es: "Shrimp, lobster, mozzarella cheese and fresh presley.", d_en: "Angus beef, gouda and bacon.", c: "Lunch", img: "https://i.postimg.cc/TPVPCcbn/Screenshot-2026-05-15-14-54-40-671-com-google-android-googlequicksearchbox-edit.jpg" },
         { n_es: "Pescado zarandeado en hoja de plátano", n_en: "Grilled fish in banana leaf", p: 645, d_es: "Recado negro, arriz pinto y vegetales.", d_en: "With recado negro, pinto rice and vegetables.", c: "Lunch", img: "https://i.postimg.cc/k5z5dTcW/IMG-20260502-170948.jpg" },
         { n_es: "Tacos estilo Baja", n_en: "Baja-style tacos", p: 435, d_es: "Camarón o pescado en tempura con ensalada de cool y salsa tamarindo.", d_en: "Tempura shrimp or fish with coleslaw and tamarind sauce.", c: "Lunch", img: "https://i.postimg.cc/hGBLbpRS/IMG-20260213-WA0021.jpg" },
-        { n_es: "Tacos de rib eye al carbón", n_en: "Charcoal-grilled rib eye tacos", p: 495, d_es: "Con guacamole y tortillas hechas a mano.", d_en: "With guacamole and handmade tortillas.", c: "Lunch", img: "https://i.postimg.cc/pdHfYqb7/IMG-20260213-WA0028.jpg" },
+        { n_es: "Tacos de rib eye al carbón", n_en: "Charcoal-grilled rib eye tacos", p: 495, d_es: "Con guacamole y tortillas hechas a mano. Cuál es el término de su preferencia? Rojo, medio o bien cocido.", d_en: "With guacamole and handmade tortillas. What is your preferred level of doneness? Rare, medium, or well-done", c: "Lunch", img: "https://i.postimg.cc/pdHfYqb7/IMG-20260213-WA0028.jpg" },
         { n_es: "Lasagna de ragú de ternera angus", n_en: "Angus beef ragú lasagna", p: 305, d_es: "Con costra de queso parmesano.", d_en: "With parmesan cheese crust.", c: "Lunch", img: "https://i.postimg.cc/4yhqQWKD/Screenshot-2026-05-15-14-57-20-585-com-google-android-googlequicksearchbox-edit.jpg" },
         { n_es: "Papas gajo", n_en: "Wedge potatoes", p: 295, d_es: "Con quedo de bola fundido y chorizo de Valladolid.", d_en: "With melted Edam cheese and Valladolid chorizo.", c: "Lunch", img: "https://i.postimg.cc/7ZpVgq3j/Screenshot-2026-05-15-15-01-00-656-com-google-android-googlequicksearchbox-edit.jpg" },
         { n_es: "Hamburguesa Artesanal Ana y José", n_en: "Ana & José artisanal burger", p: 545, d_es: "Carne angus, queso gouda, tocino, lechuga y alioli de chile xcatic. Cuál es el término de su preferencia? Rojo, medio o bien cocido.", d_en: "Angus beef, gouda cheese, bacon, lettuce and xcatic chili alioli. What is your preferred level of doneness? Rare, medium, or well-done.", c: "Lunch", img: "https://i.postimg.cc/vHs59RTT/SAVE-20260501-175829.jpg" },
@@ -182,16 +203,21 @@
         { n_es: "Curry de coco", n_en: "Coconut curry", p: 290, d_es: "Con verduras al vapor y arroz integral.", d_en: "With steamed vegetables and brown rice.", c: "Cena", img: "https://i.postimg.cc/tRh4Ltn8/IMG-20260502-171137.jpg" },
         { n_es: "Tacos de setas", n_en: "Mushroom tacos", p: 305, d_es: "Al recado negro.", d_en: "In recado negro.", c: "Cena", img: "https://i.postimg.cc/pXQTwQ4y/Screenshot-2026-05-02-18-06-03-622-com-google-android-googlequicksearchbox-edit.jpg" },
         
-        // --- SECCIÓN POSTRES (Sin foto) ---
         { n_es: "Textura de chocolate criollo Maya", n_en: "Mayan criollo chocolate textures", p: 250, d_es: "Bizcocho tibio de cacao, mouse de chocolate amargo, tierra de cacao y helado de chocolate con sal de mar.", d_en: "Warm cake with local cocoa, dark chocolate mouse, cocoa powder, and chocolate ice cream with sea salt", c: "Postre" },
         { n_es: "Carpaccio con piña asada y menta", n_en: "Pineapple carpaccio with worm salt and agave honey", p: 210, d_es: "Finas láminas de piña con ralladura de lima, chile seco y cristales de sal marina.", d_en: "Thinly sliced pineapple with lime zest, dried chili and sea salt crystals.", c: "Postre" },
         { n_es: "Crumbule de guanabana y plátano macho", n_en: "Soursop and platain crumble", p: 235, d_es: "Cocido al horno con azúcar de coco, acomoañado de helado artesanal de chaya.", d_en: "Oven-baked with coconut suggar, served with artisanal chaya ice cream.", c: "Postre" },
         
-        // --- SECCIÓN BEBIDAS (Sin foto) ---
-        { n_es: "Margarita Clásica", n_en: "Classic Margarita", p: 220, d_es: "Tequila reposado, controy y jugo de limón.", d_en: "Reposado tequila, controy and lime juice.", c: "Bebidas" },
-        { n_es: "Piña Colada", n_en: "Piña Colada", p: 195, d_es: "Ron blanco, crema de coco y jugo de piña.", d_en: "White rum, coconut cream and pineapple juice.", c: "Bebidas" },
-        
-        // --- SECCIÓN SPA Y CENA ROMÁNTICA (Con foto) ---
+        { n_es: "Piñada", n_en: "Piñada",p: 180, d_es: "Mezcla cremosa de piña y coco, servida bien fría.", d_en: "Creamy blend of pineapple and coconut, served chilled.", c: "Bebidas", img: "URL_DE_TU_FOTO.jpg" },
+        { n_es: "Fresada", n_en: "Fresada",p: 180, d_es: "Frappé de fresas naturales con un toque de limón.",  d_en: "Natural strawberry slushy with a hint of lime.", c: "Bebidas", img: "URL_DE_TU_FOTO.jpg" },
+        { n_es: "Margarita", n_en: "Margarita",p: 355, d_es: "Tequila antiguo reposado de Herradura, controy y jugo de limón. Opciones de sabor a elegir: Maracuyá, Tamarindo o clásico", d_en: "Tequila antiguo reposado de Herradura, controy and lemon juice. Flavor to choose: passion fruit, tamarind or classic.",c: "Bebidas", img: "URL_DE_TU_FOTO.jpg"  },
+        { n_es: "Mezcalrita", n_en: "Mezcalrita", p: 355,  d_es: "Mezcal Amarás joven espadín, controy, jugo de limón. Opciones de sabor a elegir: Fresa, Mango, Maracuyá, pepino o picante.", d_en: "Amaras joven espadín mezcal, controy, lemon juice. Flavor to chase: strawverry, passion fruit, cucumber, or spicy.",c: "Bebidas", img: "URL_DE_TU_FOTO.jpg"  },
+        { n_es: "Mojito tradicional", n_en: "Classic Mojito", p: 355, d_es: "Ron Diplomatico mantuano, juho de limón, jarabe natural y menta fresca. Opciones de sabores: canela, chocolate o fresa.", d_en: "Diplomatico mantuano ron, lime juice, simple syrup and fresh mint. Flavor options: cinnamon, chocolate and strawverry.", c: "Bebidas", img: "URL_DE_TU_FOTO.jpg"  },
+        { n_es: "Cielito Oaxaqueño", n_en: "Oaxacan Sky", p: 390,  d_es: "Mezcal, licor de violetas, arándano y escarcha de sal de gusano.",  d_en: "Mezcal, violet liqueur, cranberry, and worm salt rim.", c: "Bebidas", img: "URL_DE_TU_FOTO.jpg"  },
+        { n_es: "Margarita Golden", n_en: "Golden Margarita", p: 385,  d_es: "Tequila Herradura reposado, grand marnier, jugo de limón.", d_en: "Herradura reposado tequila, grand marnier, lemon juice.", c: "Bebidas", img: "URL_DE_TU_FOTO.jpg" },
+        { n_es: "Tulum sunset", n_en: "Tulum sunset", p: 395, d_es: "Whisky Jack Daniel's, campari, jugo de toronja, miel y agua quina.", d_en: "Jack Daniel's Whiskey, campari, grapefruit juice, honey and quina.", c: "Bebidas", img: "URL_DE_TU_FOTO.jpg"  },
+        { n_es: "Alebrije", n_en: "Alebrije", p: 355, d_es: "Mezcal amarás joven, chartreuse, jugo de piña, cilantro y jalapeño.", d_en: "Amaras joven mezcal, chartreuse, pineapple juce, cilantro and jalapeño.",c: "Bebidas", img: "URL_DE_TU_FOTO.jpg" },
+        { n_es: "Ana y José", n_en: "Ana y Jose", p: 385, d_es: "Mezcal 400 conejos blanco, Ron Diplomático Mantuano, pulpa de mango, piña, manzana y maracuya.", d_en: "400 conejos white mezcal, Diplomatico Mantuano rum, manho pulp, pineapple, apple and passion fruit.", c: "Bebidas", img: "URL_DE_TU_FOTO.jpg" },
+    
         { n_es: "Masaje Relajante Ana y José", n_en: "Ana & José Relaxing Massage", p: 2100, d_es: "60 min de relajación profunda con aceites orgánicos. El servicio es por persona.", d_en: "60 min of deep relaxation. The service is for person.", c: "Spa", img: "https://i.postimg.cc/XNDx4vr8/magic-edit-TUFISV9WRFFCMj-Qj-MSM4ODdh-Njg1Yz-U4Mm-I3OGI1ZWY4YWJi-NTI0Yz-Zl-Yz-Fk-My-M0-20260507-0847.jpg" },
         { n_es: "Cena Romántica frente al Mar", n_en: "Romantic Oceanside Dinner", p: 4800, d_es: "Montaje privado bajo las estrellas, menú de 4 tiempos.", d_en: "Private setup, 4-course menu.", c: "Cena Romántica", img: "https://i.postimg.cc/c15T0JvY/Una-pareja-compartiendo-una-cena-romantica-bajo-las-estrellas-con-antorcha-20260507-084013-0000.jpg" },
     ];
@@ -212,10 +238,13 @@
         document.getElementById('btnSend').innerText = t.enviar;
         
         const nav = document.getElementById('navCats');
+        const activeCat = document.querySelector('.btn-cat.active')?.getAttribute('onclick').match(/'([^']+)'/)[1] || t.catsID[0];
+        
         nav.innerHTML = t.cats.map((catName, i) => `
-            <button class="btn-cat ${i===0?'active':''}" onclick="filtrar('${t.catsID[i]}', this)">${catName}</button>
+            <button class="btn-cat ${t.catsID[i] === activeCat ? 'active' : ''}" onclick="filtrar('${t.catsID[i]}', this)">${catName}</button>
         `).join('');
-        filtrar(t.catsID[0], document.querySelector('.btn-cat'));
+        
+        filtrar(activeCat, document.querySelector('.btn-cat.active') || document.querySelector('.btn-cat'));
         renderCarrito();
     }
 
@@ -227,10 +256,10 @@
             "Desayuno": { inicio: 7.5, fin: 11.75, texto: "7:30 AM - 11:45 AM" },
             "Lunch": { inicio: 11.5, fin: 18.0, texto: "11:30 AM - 6:00 PM" },
             "Cena": { inicio: 18.01, fin: 22.5, texto: "6:01 PM - 10:30 PM" },
-            "Postre": { inicio: 7.5, fin: 23.5, texto: "7:30 AM - 10:30 PM" },
-            "Bebidas": { inicio: 9.0, fin: 23.5, texto: "9:00 AM - 10:30 PM" },
-            "Spa": { inicio: 0.0, fin: 23.9, texto: "9:00 AM - 17:00 PM / RESERVE NOW" },
-            "Cena Romántica": { inicio: 0.0, fin: 23.9, texto: "24 HOURS NOTICE. RESERVE NOW"},
+            "Postre": { inicio: 7.5, fin: 22.5, texto: "7:30 AM - 10:30 PM" },
+            "Bebidas": { inicio: 9.0, fin: 22.5, texto: "9:00 AM - 10:30 PM" },
+            "Spa": { inicio: 0.0, fin: 23.9, texto: "9:00 AM - 5:00 PM" },
+            "Cena Romántica": { inicio: 0.0, fin: 23.9, texto: "24h Notice"},
         };
 
         const config = horarios[cat];
@@ -241,44 +270,45 @@
         
         const grid = document.getElementById('menu-grid');
         const t = translations[currentLang];
-        
-        // DETERMINAR SI LA CATEGORÍA LLEVA FOTO O NO
         const sinFoto = (cat === "Postre" || cat === "Bebidas");
 
-        let banner = `<div style="grid-column: 1/-1; text-align: center; padding: 10px; background: ${estaAbierto ? '#f1f8e9' : '#fff1f1'}; color: ${estaAbierto ? '#2e7d32' : '#c62828'}; border-radius: 8px; margin-bottom: 10px; font-size: 0.8rem; border: 1px solid">${currentLang === 'es' ? 'Horario' : 'Hours'}: ${config.texto} ${estaAbierto ? '' : ' - ' + t.cerrado}</div>`;
+        let banner = `<div style="grid-column: 1/-1; text-align: center; padding: 10px; background: ${estaAbierto ? '#f1f8e9' : '#fff1f1'}; color: ${estaAbierto ? '#2e7d32' : '#c62828'}; border-radius: 8px; margin-bottom: 10px; font-size: 0.75rem; border: 1px solid">${currentLang === 'es' ? 'Horario' : 'Hours'}: ${config.texto} ${estaAbierto ? '' : ' - ' + t.cerrado}</div>`;
 
         grid.innerHTML = banner + platillos.filter(p => p.c === cat).map((p, i) => {
-            const inputID = `note-${cat}-${i}`;
+            const inputID = `note-${cat.replace(/\s+/g, '')}-${i}`;
             return `
-            <div class="card ${sinFoto ? 'no-photo' : ''}" style="opacity: ${estaAbierto ? '1' : '0.4'}; pointer-events: ${estaAbierto ? 'auto' : 'none'};">
-                ${sinFoto ? '' : `<img src="${p.img}" class="card-img">`}
+            <div class="card ${sinFoto ? 'no-photo' : ''}" style="opacity: ${estaAbierto ? '1' : '0.5'};">
+                ${sinFoto ? '' : `<img src="${p.img}" class="card-img" loading="lazy">`}
                 <div class="card-body">
-                    <div class="card-info"><span>${currentLang === 'es' ? p.n_es : p.n_en}</span><span class="precio">$${p.p}</span></div>
+                    <div class="card-info">
+                        <span>${currentLang === 'es' ? p.n_es : p.n_en}</span>
+                        <span class="precio">$${p.p}</span>
+                    </div>
                     <p class="desc">${currentLang === 'es' ? p.d_es : p.d_en}</p>
                     ${estaAbierto ? `
                         <textarea id="${inputID}" placeholder="${t.notas}"></textarea>
-                        <button class="btn-add" onclick="agregar('${currentLang==='es'?p.n_es:p.n_en}', ${p.p}, '${inputID}')">${t.agregar}</button>
-                    ` : `<p style="color:red; font-size:0.7rem; font-weight:bold; text-align:center; margin-top:10px;">${t.soloHorario}</p>`}
+                        <button class="btn-add" onclick="agregar('${currentLang==='es'?p.n_es:p.n_en}', ${p.p}, '${inputID}', '${p.c}')">${t.agregar}</button>
+                    ` : `<p style="color:var(--error); font-size:0.7rem; font-weight:bold; text-align:center; margin-top:10px;">${t.soloHorario}</p>`}
                 </div>
             </div>`;
         }).join('');
     }
 
-    function irAExperiencia(tipo) {
-        const botones = document.querySelectorAll('.btn-cat');
-        botones.forEach(btn => {
-            if(btn.innerText.toUpperCase().includes(tipo.toUpperCase())) {
-                btn.click();
-                btn.scrollIntoView({ behavior: 'smooth', inline: 'center' });
-            }
-        });
-        window.scrollTo({ top: 250, behavior: 'smooth' });
-    }
-
-    function agregar(nombre, precio, idNota) {
+    function agregar(nombre, precio, idNota, categoria) {
         const nota = document.getElementById(idNota).value.trim();
-        carrito.push({ nombre, precio, nota });
+        carrito.push({ nombre, precio, nota, categoria });
         document.getElementById(idNota).value = "";
+        
+        // Pequeño feedback visual
+        const btn = event.target;
+        const originalText = btn.innerText;
+        btn.innerText = "✓";
+        btn.style.background = "#2e7d32";
+        setTimeout(() => {
+            btn.innerText = originalText;
+            btn.style.background = "";
+        }, 800);
+
         renderCarrito();
     }
 
@@ -286,61 +316,96 @@
         const lista = document.getElementById('cart-list');
         const resumen = document.getElementById('cart-summary');
         const t = translations[currentLang];
-        if(carrito.length === 0) { lista.innerHTML = `<p style="text-align:center; color:#999; font-style:italic; font-size:0.8rem;">Canasta vacía / Empty cart</p>`; resumen.innerHTML = ""; return; }
         
-        lista.innerHTML = `<button onclick="carrito=[];renderCarrito()" style="color:red; border:none; background:none; cursor:pointer; font-size:0.75rem; font-weight:bold; margin-bottom:10px;">${t.vaciar}</button>` + 
-            carrito.map((item, i) => `<div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #eee;">
-                <span><strong>${item.nombre}</strong>${item.nota ? `<span class="cart-item-note">${item.nota}</span>` : ''}</span>
-                <span style="font-size:0.9rem;">$${item.precio} <button onclick="carrito.splice(${i},1);renderCarrito()" style="border:none;background:none;color:red;padding-left:10px;">✕</button></span>
+        if(carrito.length === 0) { 
+            lista.innerHTML = `<p style="text-align:center; color:#999; font-style:italic; font-size:0.85rem; margin: 20px 0;">Canasta vacía / Empty cart</p>`; 
+            resumen.innerHTML = ""; 
+            return; 
+        }
+        
+        lista.innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:center; margin: 15px 0 10px 0;">
+                <span style="font-weight:bold; font-size:0.9rem;">Items:</span>
+                <button onclick="carrito=[];renderCarrito()" style="color:var(--error); border:none; background:none; cursor:pointer; font-size:0.75rem; font-weight:bold;">${t.vaciar}</button>
+            </div>` + 
+            carrito.map((item, i) => `
+            <div style="display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid #eee; animation: fadeIn 0.3s ease;">
+                <span style="font-size:0.9rem;">
+                    <strong>${item.nombre}</strong>
+                    ${item.nota ? `<br><small style="color:var(--oro); font-style:italic;">"${item.nota}"</small>` : ''}
+                </span>
+                <span style="font-size:0.9rem; font-weight:bold;">$${item.p} <button onclick="carrito.splice(${i},1);renderCarrito()" style="border:none;background:none;color:#ccc;padding-left:10px; font-size:1rem;">✕</button></span>
             </div>`).join('');
             
-        const sub = carrito.reduce((acc, item) => acc + item.precio, 0);
-        const tot = sub * 1.15;
-        resumen.innerHTML = `<div class="total-box"><div class="total-row"><span>Subtotal:</span><span>$${sub.toFixed(2)}</span></div><div class="total-row total-final"><span>Total (inc. 15%):</span><span>$${tot.toFixed(2)} MXN</span></div><div style="text-align:right; font-size:0.8rem; color:#666;">Aprox. $${(tot/TIPO_CAMBIO).toFixed(2)} USD</div></div>`;
+        const subtotal = carrito.reduce((acc, item) => acc + item.precio, 0);
+        const cargoServicio = carrito.reduce((acc, item) => {
+            const porcentaje = (item.categoria === "Cena Romántica") ? 0.18 : 0.15;
+            return acc + (item.precio * porcentaje);
+        }, 0);
+        
+        const tot = subtotal + cargoServicio;
+        
+        resumen.innerHTML = `
+            <div class="total-box">
+                <div class="total-row"><span>${t.sub}:</span><span>$${subtotal.toFixed(2)}</span></div>
+                <div class="total-row"><span>${t.serv}:</span><span>$${cargoServicio.toFixed(2)}</span></div>
+                <div class="total-row total-final"><span>${t.tot}:</span><span>$${tot.toFixed(2)} MXN</span></div>
+                <div style="text-align:right; font-size:0.8rem; color:#666; margin-top:5px;">Approx. $${(tot/TIPO_CAMBIO).toFixed(2)} USD</div>
+            </div>`;
+    }
+
+    function irAExperiencia(tipo) {
+        const t = translations[currentLang];
+        const btn = Array.from(document.querySelectorAll('.btn-cat')).find(b => b.innerText.toLowerCase().includes(tipo.toLowerCase()));
+        if(btn) btn.click();
+        window.scrollTo({ top: 150, behavior: 'smooth' });
     }
 
     function enviarPedido() {
-        const nombre = document.getElementById('guest-name').value;
-        const hab = document.getElementById('room-num').value;
+        const nameInput = document.getElementById('guest-name');
+        const roomInput = document.getElementById('room-num');
         const pago = document.getElementById('payment-method').value;
         
-        if(!nombre || !hab || carrito.length === 0) {
-            return alert(currentLang === 'es' ? "Faltan datos o canasta vacía" : "Missing data or empty cart");
+        nameInput.classList.remove('invalid');
+        roomInput.classList.remove('invalid');
+
+        if(!nameInput.value.trim() || !roomInput.value.trim() || carrito.length === 0) {
+            if(!nameInput.value.trim()) nameInput.classList.add('invalid');
+            if(!roomInput.value.trim()) roomInput.classList.add('invalid');
+            return alert(currentLang === 'es' ? "Por favor completa tus datos y agrega platillos." : "Please complete your details and add items.");
         }
 
-        const tieneSpa = carrito.some(item => {
-            const pOriginal = platillos.find(p => (p.n_es === item.nombre || p.n_en === item.nombre));
-            return pOriginal && pOriginal.c === "Spa";
-        });
+        const tieneSpa = carrito.some(item => item.categoria === "Spa");
+        const tieneComida = carrito.some(item => item.categoria !== "Spa" && item.categoria !== "Cena Romántica");
 
-        const tieneCocina = carrito.some(item => {
-            const pOriginal = platillos.find(p => (p.n_es === item.nombre || p.n_en === item.nombre));
-            return pOriginal && (pOriginal.c !== "Spa" && pOriginal.c !== "Cena Romántica");
-        });
-
-        const numCocina = "5219841862451"; 
-        const numSpa = "5219842155420";
-
-        if (tieneSpa && tieneCocina) {
-            alert(currentLang === 'es' ? 
+        if (tieneSpa && tieneComida) {
+            return alert(currentLang === 'es' ? 
                 "Por favor, envíe primero su pedido de comida y luego su reserva de Spa por separado." : 
                 "Please send your food order first and then your Spa reservation separately.");
-            return;
         }
 
-        let numeroDestino = tieneSpa ? numSpa : numCocina;
-        let header = tieneSpa ? "*SPA RESERVATION - ANA Y JOSÉ*" : "*YOUR ORDER - ANA Y JOSÉ*";
-        let msg = `${header}%0A*Guest:* ${nombre}%0A*Room:* ${hab}%0A*Payment:* ${pago}%0A---%0A`;
+        const numDestino = tieneSpa ? "5219842155420" : "5219841862451";
+        const emoji = tieneSpa ? "✨" : "🍽️";
+        let msg = `*${emoji} ${tieneSpa ? 'SPA' : 'NUEVO PEDIDO'} - ANA Y JOSÉ*%0A%0A`;
+        msg += `*Huésped:* ${nameInput.value}%0A`;
+        msg += `*Habitación:* ${roomInput.value}%0A`;
+        msg += `*Pago:* ${pago}%0A`;
+        msg += `---%0A`;
         
         carrito.forEach((item, i) => {
             msg += `${i+1}. *${item.nombre}*%0A`;
-            if(item.nota) msg += `   _Note: ${item.nota}_%0A`;
+            if(item.nota) msg += `   _Nota: ${item.nota}_%0A`;
         });
 
-        const tot = carrito.reduce((acc, item) => acc + item.precio, 0) * 1.15;
-        msg += `---%0A*TOTAL: $${tot.toFixed(2)} MXN*`;
+        const subtotal = carrito.reduce((acc, item) => acc + item.precio, 0);
+        const cargoServicio = carrito.reduce((acc, item) => {
+            const porcentaje = (item.categoria === "Cena Romántica") ? 0.18 : 0.15;
+            return acc + (item.precio * porcentaje);
+        }, 0);
+        
+        msg += `---%0A*TOTAL ESTIMADO: $${(subtotal + cargoServicio).toFixed(2)} MXN*`;
 
-        window.open(`https://wa.me/${numeroDestino}?text=${msg}`, '_blank');
+        window.open(`https://wa.me/${numDestino}?text=${msg}`, '_blank');
     }
 
     updateUI();
