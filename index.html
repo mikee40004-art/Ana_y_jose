@@ -266,23 +266,46 @@
             </div>`;
     }
 
-    function enviarPedido() {
+    
+             function enviarPedido() {
         const nom = document.getElementById('guest-name').value.trim();
         const hab = document.getElementById('room-num').value.trim();
         const pago = document.getElementById('payment-method').value;
         const t = translations[currentLang];
+        const btn = document.getElementById('btnSend');
 
-        if(!nom || !hab) { alert(t.errDatos); return; }
-        if(carrito.length === 0) { alert(t.errCarrito); return; }
+        // VALIDACIÓN MODERNA (Sin el mensaje del navegador)
+        if(!nom || !hab || carrito.length === 0) {
+            const originalText = btn.innerHTML;
+            btn.style.background = "#c62828"; // Color rojo error
+            
+            if(!nom || !hab) {
+                btn.innerText = currentLang === 'es' ? "⚠️ Ingresa nombre y habitación" : "⚠️ Enter name and room";
+            } else if(carrito.length === 0) {
+                btn.innerText = currentLang === 'es' ? "⚠️ Tu canasta está vacía" : "⚠️ Your cart is empty";
+            }
+
+            setTimeout(() => {
+                btn.style.background = "#25D366"; // Regresa al verde original
+                btn.innerHTML = originalText;
+            }, 3000);
+            return;
+        }
 
         const tieneSpa = carrito.some(item => item.categoria === "Spa");
         const tieneCocina = carrito.some(item => item.categoria !== "Spa" && item.categoria !== "Cena Romántica");
 
         if (tieneSpa && tieneCocina) {
-            alert(currentLang === 'es' ? "Por favor envíe Spa y Alimentos por separado." : "Please send Spa and Food orders separately.");
+            btn.innerText = currentLang === 'es' ? "⚠️ Envía Spa y Alimentos por separado" : "⚠️ Send Spa and Food separately";
+            btn.style.background = "#c62828";
+            setTimeout(() => {
+                btn.style.background = "#25D366";
+                btn.innerHTML = t.enviar;
+            }, 3000);
             return;
         }
 
+        // Si todo está bien, procedemos al WhatsApp
         const num = tieneSpa ? "5219842155420" : "5219841862451";
         let msg = `*${tieneSpa ? 'SPA' : 'ORDEN'} - ANA Y JOSÉ*%0A*Nombre:* ${nom}%0A*Hab:* ${hab}%0A*Pago:* ${pago}%0A---%0A`;
         
@@ -295,7 +318,8 @@
         msg += `---%0A*TOTAL: $${(subtotal + serv).toFixed(2)} MXN*`;
 
         window.open(`https://wa.me/${num}?text=${msg}`, '_blank', 'noopener');
-    }
+    
+  }
 
     function irAExperiencia(tipo) {
         const btns = Array.from(document.querySelectorAll('.btn-cat'));
