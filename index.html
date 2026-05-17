@@ -6,13 +6,13 @@
     <title>Ana y José Tulum - Signature Menu</title>
     <style>
         :root { --oro: #8d754a; --oscuro: #2c3e50; --beige: #f9f7f2; --blanco: #ffffff; }
-        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: var(--beige); margin: 0; padding: 0; color: #333; padding-bottom: 120px; }
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: var(--beige); margin: 0; padding: 0; color: #333; padding-bottom: calc(160px + env(safe-area-inset-bottom)); }
         
-        .container { max-width: 800px; margin: auto; background: var(--blanco); min-height: 100vh; position: relative; box-shadow: 0 0 30px rgba(0,0,0,0.05); }
+        .container { max-width: 800px; margin: auto; background: var(--blanco); min-height: 100vh; position: relative; box-shadow: 0 0 30px rgba(0,0,0,0.05); padding-bottom: calc(100px + env(safe-area-inset-bottom)); }
         
-        /* Botones VIP Flotantes */
-        .vip-experience-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 2000; width: 95%; max-width: 450px; }
-        .btn-vip { flex: 1; background: var(--oscuro); color: white; border: 1px solid var(--oro); padding: 14px 5px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; gap: 5px; }
+        /* Botones VIP Flotantes con Desenfoque Inteligente y soporte iOS */
+        .vip-experience-bar { position: fixed; bottom: calc(15px + env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 2000; width: 92%; max-width: 450px; background: rgba(44, 62, 80, 0.75); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 8px; border-radius: 16px; border: 1px solid var(--oro); box-sizing: border-box; }
+        .btn-vip { flex: 1; background: var(--oscuro); color: white; border: 1px solid var(--oro); padding: 14px 5px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; }
 
         .lang-switch { position: absolute; top: 27px; right: 15px; z-index: 1001; background: rgba(255,255,255,0.9); color: var(--oscuro); border: 1px solid var(--oro); padding: 6px 12px; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 0.7rem; }
         .exchange-banner { background: var(--oscuro); color: white; text-align: center; padding: 6px; font-size: 0.7rem; letter-spacing: 1px; border-bottom: 2px solid var(--oro); }
@@ -31,7 +31,7 @@
         @media(min-width: 600px) { .grid { grid-template-columns: 1fr 1fr; } }
         
         .card { border: 1px solid #f0f0f0; border-radius: 12px; overflow: hidden; background: #fff; display: flex; flex-direction: column; }
-        .card-img { width: 100%; height: 180px; object-fit: cover; background: #f9f9f9; }
+        .card-img { width: 100%; height: auto; max-height: 480px; object-fit: contain; background: #f9f9f9; }
         
         /* Ajuste para tarjetas sin foto */
         .card.no-photo { border-left: 4px solid var(--oro); }
@@ -169,7 +169,7 @@
             n_es: "Tacos de huevo con longaniza de Valladolid", n_en: "Eggs tacos with Valladolid longaniza",
             p: 285, d_es: "Frijoles colados, aguacate y chiltomate.", 
             d_en: "Refried beans, avocado and chiltomate.",
-            c: "Desayuno", img: "https://i.postimg.cc/wBhR2RDv/IMG-20260430-192623.jpg" 
+            c: "Desayuno", img: "https://i.postimg.cc/KvCr4m9L/IMG-20260429-085911.jpg" 
         },
         { 
             n_es: "Omelette Tulum", n_en: "Tulum omelette",
@@ -202,16 +202,16 @@
             c: "Desayuno", img: "https://i.postimg.cc/T24sxLDL/IMG-20260429-191640.jpg" 
         },
         { 
-            n_es: "Tamal vegano de masa de plátano", n_en: "Vegan platain & coconut masa tamal",
-            p: 205, d_es: "Con salsa de chiltomate.", 
-            d_en: "Served with chiltomate sauce.",
-            c: "Desayuno", img: "https://i.postimg.cc/sx1wCBMd/IMG-20260214-080101.jpg" 
+            n_es: "Enchiladas de cochinita pibil", n_en: "Cochinita pibil enchiladas",
+            p: 305, d_es: "Con queso cotija y cebolla morada encurtida.", 
+            d_en: "With cotija cheese and pickled red onion.",
+            c: "Desayuno", img: "https://i.postimg.cc/8ckd31s8/IMG-20260517-131632.jpg" 
         },
         { 
             n_es: "Guacamole del Huerto", n_en: "Guacamole from our garden",
             p: 280, d_es: "Con plátano macho frito, semillas de calabaza y totopos de maíz.", 
             d_en: "With fried platain, pumpkin seeds and corn totopos.",
-            c: "Lunch", img: "https://i.postimg.cc/Prbxgb9J/Screenshot-2026-05-02-18-05-17-764-com-google-android-googlequicksearchbox-edit.jpg" 
+            c: "Lunch", img: "https://i.postimg.cc/FH2Zjhb1/IMG-20260503-125707.jpg" 
         },
         { 
             n_es: "Palomitas de Camarón al chile dulce", n_en: "Sweet chili shrimp popcorn",
@@ -235,13 +235,13 @@
             n_es: "Tacos estilo Baja", n_en: "Baja style tacos",
             p: 435, d_es: "Camarón o pescado en tempura con ensalada de col y salsa de tamarindo (3 piezas).", 
             d_en: "Tempura shrimp or fish with coleslaw and tamarind sauce (3 pieces).",
-            c: "Lunch", img: "https://i.postimg.cc/hGBLbpRS/IMG-20260213-WA0021.jpg" 
+            c: "Lunch", img: "https://i.postimg.cc/NjzZ8jb9/IMG-20260517-140637.jpg" 
         },
         { 
             n_es: "Tacos de rib eye al carbón", n_en: "Charcoal-grilled Rib eye tacos",
             p: 495, d_es: "Con guacamole y tortillas hechas a mano. Cuál es el término de su preferencia? Rojo, medio o bien cocido", 
             d_en: "With guacamole and handmade tortillas. What is your preferred level of doneness? Rare, medium, or well-done",
-            c: "Lunch", img: "https://i.postimg.cc/pdHfYqb7/IMG-20260213-WA0028.jpg" 
+            c: "Lunch", img: "https://i.postimg.cc/yYc9Pgv2/IMG-20260517-132136.jpg" 
         },
         { 
             n_es: "Tacos de setas al recado negro (vegano)", n_en: "Recado negro mushroom tacos",
@@ -261,6 +261,13 @@
             d_en: "Caramelized onion on brioche bread.",
             c: "Lunch", img: "https://i.postimg.cc/1XcRwsZD/IMG-20260502-171046.jpg" 
         },
+        { 
+            n_es: "Lasagna de ragú de ternera angus", n_en: "Angus beef ragú lasagna",
+            p: 305, d_es: "Con costra de queso parmesano.", 
+            d_en: "With parmesan cheese crust.",
+            c: "Lunch", img: "https://i.postimg.cc/4yhqQWKD/Screenshot-2026-05-15-14-57-20-585-com-google-android-googlequicksearchbox-edit.jpg" 
+        },
+        
         { 
             n_es: "Pizza Margarita", n_en: "Margherita pizza",
             p: 305, d_es: "Tomate fresco, mozzarella y albahaca.", 
@@ -301,7 +308,7 @@
             n_es: "Guacamole del Huerto", n_en: "Guacamole from our garden",
             p: 280, d_es: "Con plátano macho frito, semillas de calabaza y totopos de maíz.", 
             d_en: "With fried platain, pumpkin seeds and corn totopos.",
-            c: "Cena", img: "https://i.postimg.cc/Prbxgb9J/Screenshot-2026-05-02-18-05-17-764-com-google-android-googlequicksearchbox-edit.jpg" 
+            c: "Cena", img: "https://i.postimg.cc/FH2Zjhb1/IMG-20260503-125707.jpg" 
         },
         { 
             n_es: "Palomitas de Camarón al chile dulce", n_en: "Sweet chili shrimp popcorn",
@@ -325,13 +332,13 @@
             n_es: "Tacos estilo Baja", n_en: "Baja style tacos",
             p: 435, d_es: "Camarón o pescado en tempura con ensalada de col y salsa de tamarindo (3 piezas).", 
             d_en: "Tempura shrimp or fish with coleslaw and tamarind sauce (3 pieces).",
-            c: "Cena", img: "https://i.postimg.cc/hGBLbpRS/IMG-20260213-WA0021.jpg" 
+            c: "Cena", img: "https://i.postimg.cc/NjzZ8jb9/IMG-20260517-140637.jpg" 
         },
         { 
             n_es: "Tacos de rib eye al carbón", n_en: "Charcoal-grilled Rib eye tacos",
             p: 495, d_es: "Con guacamole y tortillas hechas a mano. Cuál es el término de su preferencia? Rojo, medio o bien cocido", 
             d_en: "With guacamole and handmade tortillas. What is your preferred level of doneness? Rare, medium, or well-done",
-            c: "Cena", img: "https://i.postimg.cc/pdHfYqb7/IMG-20260213-WA0028.jpg" 
+            c: "Cena", img: "https://i.postimg.cc/yYc9Pgv2/IMG-20260517-132136.jpg" 
         },
         { 
             n_es: "Tacos de setas al recado negro (vegano)", n_en: "Recado negro mushroom tacos",
@@ -350,6 +357,12 @@
             p: 485, d_es: "Con cebolla caramelizada y pan brioche.", 
             d_en: "Caramelized onion on brioche bread.",
             c: "Cena", img: "https://i.postimg.cc/1XcRwsZD/IMG-20260502-171046.jpg" 
+        },
+        { 
+            n_es: "Lasagna de ragú de ternera angus", n_en: "Angus beef ragú lasagna",
+            p: 305, d_es: "Con costra de queso parmesano.", 
+            d_en: "With parmesan cheese crust.",
+            c: "Cena", img: "https://i.postimg.cc/4yhqQWKD/Screenshot-2026-05-15-14-57-20-585-com-google-android-googlequicksearchbox-edit.jpg" 
         },
         { 
             n_es: "Pizza Margarita", n_en: "Margherita pizza",
@@ -391,7 +404,7 @@
             n_es: "Textura de chocolate criollo Maya", n_en: "Mayan criollo chocolate textures",
             p: 250, d_es: "Bizcocho tibio de cacao, mousse de chocolate amargo, tierra de cacao y helado de chocolate con sal de mar.", 
             d_en: "Warm cake with local cocoa, dark chocolate mousse, cocoa powder, and chocolate ice cream with sea salt.",
-            c: "Postre", img: "URL_DE_TU_FOTO.jpg" 
+            c: "Postre", img: "" 
         },
         { 
             n_es: "Carpaccio con piña asada y menta", n_en: "Pineapple carpaccio with worm salt and agave honey",
@@ -404,6 +417,42 @@
             p: 235, d_es: "Cocido al horno con azúcar de coco, acompañado de helado artesanal de chaya.", 
             d_en: "Oven-baked with coconut sugar, served with artisanal chaya ice cream.",
             c: "Postre", img: "" 
+        },
+        { 
+            n_es: "Agua Evian natural", n_en: "Natural water Evian",
+            p: 205, d_es: "750 ml", 
+            d_en: "750 ml",
+            c: "Bebidas", img: "" 
+        },
+        { 
+            n_es: "Agua Evian mineral", n_en: "Sparkling water Evian",
+            p: 195, d_es: "750 ml", 
+            d_en: "750 ml",
+            c: "Bebidas", img: "" 
+        },
+        { 
+            n_es: "Café americano", n_en: "American coffee",
+            p: 90, d_es: "", 
+            d_en: "",
+            c: "Bebidas", img: "" 
+        },
+        { 
+            n_es: "Jugo de naranja natural", n_en: "Natural orange juice",
+            p: 105, d_es: "", 
+            d_en: "",
+            c: "Bebidas", img: "" 
+        },
+        { 
+            n_es: "Jugo verde Maya", n_en: "Mayan green juice",
+            p: 155, d_es: "Chaya, piña, pepino, apio y hierbabuena fresco y alcalino", 
+            d_en: "Chaya, pineapple, cucumber, celery and spearmint fresh and alcaline",
+            c: "Bebidas", img: "" 
+        },
+        { 
+            n_es: "Smoothie tropical", n_en: "Tropical smoothie",
+            p: 165, d_es: "Mango, plátano y leche de coco con semillas de chía", 
+            d_en: "Mango, banana and coconut milk wuth chia seeds.",
+            c: "Bebidas", img: "" 
         },
         { 
             n_es: "Piñada", n_en: "Piñada",
@@ -467,52 +516,40 @@
         },
         { 
             n_es: "Apapacho", n_en: "Apapacho", 
-            p: 2460, d_es: "De origen náhuatl, apapacho signiﬁca abrazar con el alma, eso es lo que su cuerpo sentirá con este masaje de presión suave a media, en el que el sistema nervioso y muscular se sentirán relajados, dejando el estrés atrás. $2,460.00 MXN, 50 Min. / $2,665.00 MXN, 70 Min", 
-            d_en: "Náhuatl origin, apapacho means to embrace with the soul, and that is what your body will feel with this massage of soft to medium pressure, in which the nervous and muscular systems will feel relaxed, leaving stress behind. 2,460.00 pesos, 50 Min. / $2,665.00 pesos, 70 Min", 
+            p: 2460, d_es: "De origen náhuatl, apapacho signiﬁca abrazar con el alma, eso es lo que su cuerpo sentirá con este masaje de presión suave a media, en el que el sistema nervioso y muscular se sentirán relajados, dejando el estrés atrás. 50 Min.", 
+            d_en: "Náhuatl origin, apapacho means to embrace with the soul, and that is what your body will feel with this massage of soft to medium pressure, in which the nervous and muscular systems will feel relaxed, leaving stress behind. 50 Min.", 
             c: "Spa", img: "https://i.postimg.cc/XNDx4vr8/magic-edit-TUFISV9WRFFCMj-Qj-MSM4ODdh-Njg1Yz-U4Mm-I3OGI1ZWY4YWJi-NTI0Yz-Zl-Yz-Fk-My-M0-20260507-0847.jpg" 
         },
         { 
-            n_es: "TRATAMIENTO MEXICANO ANTI-EDAD", n_en: "MEXICAN ANTI AGING TREATMENT", 
-            p: 3075, d_es: "Tratamiento remineralizante y antioxidante a base de chaya, pimiento, entre otros ingredientes naturales que renovarán completamente la piel. Este servicio inicia con una exfoliación, seguido de una envoltura con mascarilla y ﬁnaliza con la aplicación de una crema hidratante que sellará sus beneﬁcios. $ 3075.00 MXN, 90 Min.", 
-            d_en: "Remineralizing and antioxidant treatment based on chaya, bell pepper, among other natural ingredients that completely renew the skin. This service begins with an exfoliation, followed by a body wrap with a mask, and ends with the application of a moisturizing cream that seals its beneﬁts. $ 3075.00 pesos, 90 Min.", 
-            c: "Spa", img: "https://i.postimg.cc/XNDx4vr8/magic-edit-TUFISV9WRFFCMj-Qj-MSM4ODdh-Njg1Yz-U4Mm-I3OGI1ZWY4YWJi-NTI0Yz-Zl-Yz-Fk-My-M0-20260507-0847.jpg" 
+            n_es: "Pixán", n_en: "Pixán", 
+            p: 2870, d_es: "Pixan signiﬁca (espíritu) en maya y esta terapia regresará tu espíritu y mente a su equilibrio. Masaje enfocado en las estructuras más profundas de los músculos, en el que se utiliza presión media-fuerte con el ﬁn de devolver movilidad a los músculos, liberar toxinas acumuladas en ellos y acelerar la circulación, complementado con la utilización de pindas herbales, las cuales ayudarán a los músculos y la mente a relajarse gracias a sus hierbas y esencias, ayudando a reducir el dolor. 70 Min.", 
+            d_en: "Pixan means (spirit) in Mayan, and this therapy will bring your spirit and mind back into balance. Massage focused on the deepest structures of the muscles, in which medium-strong pressure is used in order to restore mobility to the muscles, release accumulated toxins, and accelerate circulation. This therapy is complemented with the use of herbal pindas, which help the muscles and mind relax thanks to their herbs, essences, and warm temperature, helping to reduce pain. 70 Min.", 
+            c: "Spa", img: "https://i.postimg.cc/FKvKjvpr/SAVE-20260517-145341.jpg" 
         },
-         { 
-            n_es: "FACIAL INTI", n_en: "INTI FACIAL", 
-            p: 2214, d_es: "Facial enfocado en limpiar profundamente y eliminar las impurezas en la piel creadas naturalmente por nuestro cuerpo y por la exposición ambiental, teniendo como resultado una renovación celular de la piel, una textura tersa y un rostro luminoso. El tratamiento se personaliza según el tipo de piel. $ 2214.00 MXN 50 min", 
-            d_en: "Facial focused on deep cleansing and eliminating impurities in the skin created naturolly by our body ond environmentol exposure, resulting in a cellulor renewal of the skin, a smooth texture ond a luminous face. The treatment is personolized occording to the skin type. $ 2214.00 pesos 50 min", 
-            c: "Spa", img: "https://i.postimg.cc/XNDx4vr8/magic-edit-TUFISV9WRFFCMj-Qj-MSM4ODdh-Njg1Yz-U4Mm-I3OGI1ZWY4YWJi-NTI0Yz-Zl-Yz-Fk-My-M0-20260507-0847.jpg" 
-        },
-         { 
-            n_es: "EXFOLIACIÓN CON COPAL", n_en: "BODY EXFOLIATION WITH COPAL", 
-            p: 2460, d_es: "Renueve su piel y su energía con esta exfoliación de copal, una resina mexicana que desde épocas prehispánicas se ha usado en rituales y temazcales y que dejará su piel tersa y preparada para recibir una hidratación profunda con una crema a base de aloe vera, completando este servicio dedicado a la piel. $ 2460.00 MXN 60 min", 
-            d_en: "Renew your skin and your energy with this copal exfoliation, a Mexican resin that since pre-Hispanic times has been used in rituals and temazcales, leaving your skin smooth and ready to receive deep hydration with an aloe vera-based cream, completing this service dedicated to the skin. $ 2460.00 pesos 60 min", 
-            c: "Spa", img: "https://i.postimg.cc/XNDx4vr8/magic-edit-TUFISV9WRFFCMj-Qj-MSM4ODdh-Njg1Yz-U4Mm-I3OGI1ZWY4YWJi-NTI0Yz-Zl-Yz-Fk-My-M0-20260507-0847.jpg" 
-        },
-          { 
-            n_es: "TRATAMIENTO DE XOCOLATL MEXICANO", n_en: "MEXICAN XOCOLATL TREATMENT", 
-            p: 2460, d_es: "Masaje relajante realizado con chocolate mexicano, lleno de antioxidantes y propiedades hidratantes, dejará como resultado una piel suave y nutrida. $2,460.00 MXN, 60 Min servicio individual. / $ 4182.00 MXN, 60 Min en pareja", 
-            d_en: "Relaxing massage with Mexican chocolate, full of antioxidants and moisturizing properties, leaving your skin soft and nourished. 2,460.00 pesos, 50 Min. / $2,460.00 pesos, 60 Min for person / $ 4182.00 pesos 60 Min for two person", 
-            c: "Spa", img: "https://i.postimg.cc/XNDx4vr8/magic-edit-TUFISV9WRFFCMj-Qj-MSM4ODdh-Njg1Yz-U4Mm-I3OGI1ZWY4YWJi-NTI0Yz-Zl-Yz-Fk-My-M0-20260507-0847.jpg" 
-        },
-         { 
-            n_es: "TRATAMIENTO EQUILIBRANTE Tl'AL KIIN", n_en: "Tl'AL KIIN AFTER SUN TREATMENT", 
-            p: 2460, d_es: "Tratamiento pensado en aquellas pieles que han sido dañadas por el sol o que son sensibles. Entre sus ingredientes se encuentran la miel de abeja, tuna y agave, que recobrarán el equilibrio natural de la piel; disfrutará de una mascarilla corporal seguida de una hidratación profunda a base de aloe vera. $2,460.00 MXN, 60 Min.", 
-            d_en: "Treatment designed for those skins that hove been damaged by the sun, among its ingredients ore honey, prickly peor ond agave thot will recover the natural balance of the skin; you will enjoy a body mask followed by o deep moisturizing with aloe vera. 2,460.00 pesos, 50 Min.", 
-            c: "Spa", img: "https://i.postimg.cc/XNDx4vr8/magic-edit-TUFISV9WRFFCMj-Qj-MSM4ODdh-Njg1Yz-U4Mm-I3OGI1ZWY4YWJi-NTI0Yz-Zl-Yz-Fk-My-M0-20260507-0847.jpg" 
-        },
-         { 
-            n_es: "CHAN'PAAL", n_en: "CHAN'PAAL", 
-            p: 1045, d_es: "Un masaje pensado en los más pequeños, con la ﬁna intención de relajar sus sentidos y generar calma en su cuerpo a través de una activación sanguínea que fortalecerá el sistema nervioso y el sistema inmunológico. Recomendado para pequeños +1 año. $ 1045.00 MXN, 20 Min.", 
-            d_en: "A massage designed for the little ones, with the intention of relaxing their senses and bringing calmness to their body through blood circulation activation, strengthening the nervous and immune systems. Recommended for children +1 year. $ 1045.00 pesos, 20 Min.", 
-            c: "Spa", img: "https://i.postimg.cc/XNDx4vr8/magic-edit-TUFISV9WRFFCMj-Qj-MSM4ODdh-Njg1Yz-U4Mm-I3OGI1ZWY4YWJi-NTI0Yz-Zl-Yz-Fk-My-M0-20260507-0847.jpg" 
-        },
-    
         { 
-            n_es: "Cena Romántica frente al Mar", n_en: "Romantic Oceanside Dinner", 
-            p: 4800, d_es: "Montaje privado bajo las estrellas, menú de 4 tiempos.", 
-            d_en: "Private setup, 4-course menu.", 
-            c: "Cena Romántica", img: "https://i.postimg.cc/c15T0JvY/Una-pareja-compartiendo-una-cena-romantica-bajo-las-estrellas-con-antorcha-20260507-084013-0000.jpg" 
+            n_es: "Otoch", n_en: "Otoch", 
+            p: 1435, d_es: "Para los mayas, otoch signiﬁca hogar, y nuestro deseo es que a través de este masaje personalizado pueda regresar al suyo totalmente renovado y sanado por medio de varias técnicas de masaje, como el relajante, tejido profundo y estiramientos según sean requeridos. 30 Min.", 
+            d_en: "For the Mayan people, otoch means home, and our desire is that through this personalized massage you can return to yours totally renewed and healed through various massage techniques such as relaxing, deep tissue, and stretching as required. 30 Min.", 
+            c: "Spa", img: "https://i.postimg.cc/j5vJF22r/Screenshot-2026-05-17-16-26-37-357-com-google-android-googlequicksearchbox-edit.jpg" 
+        },
+        
+        { 
+            n_es: "JUNTOS POR SIEMPRE (Menú de 4 Tiempos)", n_en: "TOGETHER FOREVER (4-Course Menu)", 
+            p: 8325, d_es: "Montaje privado bajo las estrellas. Incluye: Coctel de bienvenida, menú maridaje con Tequila o Mezcal, Botella de vino de la casa, decoración romántica con pétalos y velas. Selección coordinada de entradas, plato fuerte y postre. Ver opciones de platillos en la imagen superior.", 
+            d_en: "Private setup under the stars. Includes: Welcome cocktail, pairing menu with Tequila or Mezcal, House bottle of wine, romantic decoration with petals and candles. See dish choices in the image above.", 
+            c: "Cena Romántica", img: "https://i.postimg.cc/wMfF2KWT/IMG-20260517-121820.jpg" 
+        },
+        { 
+            n_es: "ANOCHECER (Menú de 4 Tiempos)", n_en: "DUSK (4-Course Menu)", 
+            p: 3700, d_es: "Montaje privado bajo las estrellas. Incluye: Martini de Maracuyá, Botella de agua, Copa de vino de la casa. Selección coordinada de entradas, plato fuerte y postre. Ver opciones de platillos en la imagen superior.", 
+            d_en: "Private setup under the stars. Includes: Passion fruit martini, Bottle of water, Glass of house wine. See dish choices in the image above.", 
+            c: "Cena Romántica", img: "https://i.postimg.cc/Wz80VxCY/IMG-20260517-123224.jpg" 
+        },
+        { 
+            n_es: "ATARDECER (Menú de 3 Tiempos)", n_en: "SUNSET (3-Course Menu)", 
+            p: 2775, d_es: "Montaje privado bajo las estrellas. Incluye: Copa de vino espumoso de bienvenida. Selección coordinada de entradas, plato fuerte y postre (Ver opciones de platillos en la imagen superior).", 
+            d_en: "Private setup under the stars. Includes: Welcome glass of sparkling wine. Choice of appetizers, main course, and dessert (See alternatives in the image above).", 
+            c: "Cena Romántica", img: "https://i.postimg.cc/BbnXTb7T/IMG-20260517-123422.jpg" 
         }
     ];
 
@@ -555,7 +592,7 @@
             "Postre": { inicio: 7.5, fin: 22.5, texto: "7:30 AM - 10:30 PM" },
             "Bebidas": { inicio: 9.0, fin: 22.5, texto: "9:00 AM - 10:30 PM" },
             "Spa": { inicio: 0, fin: 24, texto: "9:00 AM - 5:00 PM / Pregunte por la promoción del día / Ask about today's special offer." },
-            "Cena Romántica": { inicio: 0, fin: 24, texto: "24h Notice"},
+            "Cena Romántica": { inicio: 0, fin: 24, texto: "24h con previa reserva /with prior reservation"},
         };
 
         const config = horarios[cat];
@@ -674,7 +711,7 @@
             return;
         }
 
-        const num = tieneSpa ? "5219842155420" : "5219841862451";
+        const num = tieneSpa ? "5219841862451" : "5219841862451";
         
         let tipoOrden = "ORDEN";
         if (tieneSpa) {
