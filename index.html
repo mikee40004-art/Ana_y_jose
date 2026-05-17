@@ -14,7 +14,7 @@
         .vip-experience-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 2000; width: 95%; max-width: 450px; }
         .btn-vip { flex: 1; background: var(--oscuro); color: white; border: 1px solid var(--oro); padding: 14px 5px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; gap: 5px; }
 
-        .lang-switch { position: absolute; top: 15px; right: 15px; z-index: 1001; background: rgba(255,255,255,0.9); color: var(--oscuro); border: 1px solid var(--oro); padding: 6px 12px; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 0.7rem; }
+        .lang-switch { position: absolute; top: 27px; right: 15px; z-index: 1001; background: rgba(255,255,255,0.9); color: var(--oscuro); border: 1px solid var(--oro); padding: 6px 12px; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 0.7rem; }
         .exchange-banner { background: var(--oscuro); color: white; text-align: center; padding: 6px; font-size: 0.7rem; letter-spacing: 1px; border-bottom: 2px solid var(--oro); }
         
         .hero { width: 100%; height: 200px; background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://r2.erweima.ai/i/1000108113.jpg'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; }
@@ -75,7 +75,7 @@
     <div class="canasta">
         <h3 id="txtFinalizar" style="text-align: center; margin-top: 0;">Finalizar Pedido</h3>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
-            <div><label id="lblNombre" style="font-size: 0.75rem; font-weight:bold;">Nombre:</label><input type="text" id="guest-name" class="form-input"></div>
+            <div><label id="lblNombre" style="font-size: 0.75rem; font-weight:bold;">Nombre:</label><input type="text" id="guest-name" class="form-input" placeholder="Guest"></div>
             <div><label id="lblHab" style="font-size: 0.75rem; font-weight:bold;">Habitación:</label><input type="text" id="room-num" class="form-input" placeholder="Ej. 110A"></div>
         </div>
         <div style="margin-bottom: 20px;">
@@ -397,80 +397,117 @@
             n_es: "Carpaccio con piña asada y menta", n_en: "Pineapple carpaccio with worm salt and agave honey",
             p: 210, d_es: "Finas láminas de piña con ralladura de lima, chile seco y cristales de sal marina.", 
             d_en: "Thinly sliced pineapple with lime zest, dried chili and sea salt crystals.",
-            c: "Postre", img: "URL_DE_TU_FOTO.jpg" 
+            c: "Postre", img: "" 
         },
         { 
             n_es: "Crumble de guanabana y plátano macho", n_en: "Soursop and plantain crumble",
             p: 235, d_es: "Cocido al horno con azúcar de coco, acompañado de helado artesanal de chaya.", 
             d_en: "Oven-baked with coconut sugar, served with artisanal chaya ice cream.",
-            c: "Postre", img: "URL_DE_TU_FOTO.jpg" 
+            c: "Postre", img: "" 
         },
         { 
             n_es: "Piñada", n_en: "Piñada",
             p: 180, d_es: "Mezcla cremosa de piña y coco, servida bien fría.", 
             d_en: "Creamy blend of pineapple and coconut, served chilled.",
-            c: "Bebidas", img: "URL_DE_TU_FOTO.jpg" 
+            c: "Bebidas", img: "" 
         },
         { 
             n_es: "Fresada", n_en: "Fresada",
             p: 180, d_es: "Frappé de fresas naturales con un toque de limón.", 
             d_en: "Natural strawberry slushy with a hint of lime.",
-            c: "Bebidas", img: "URL_DE_TU_FOTO.jpg" 
+            c: "Bebidas", img: "" 
         },
         { 
             n_es: "Margarita Clásica", n_en: "Margarita",
             p: 355, d_es: "Tequila antiguo reposado de Herradura, controy y jugo de limón. Opciones de sabor a elegir: Maracuyá, Tamarindo o clásico.", 
             d_en: "Tequila antiguo reposado de Herradura, controy and lemon juice. Flavor to choose: passion fruit, tamarind or classic.",
-            c: "Bebidas", img: "URL_DE_TU_FOTO.jpg" 
+            c: "Bebidas", img: "" 
         },
         { 
             n_es: "Mezcalrita", n_en: "Mezcalrita",
             p: 355, d_es: "Mezcal Amarás joven espadín, controy, jugo de limón. Opciones de sabor a elegir: Fresa, Mango, Maracuyá, pepino o picante.", 
             d_en: "Amaras joven espadín mezcal, controy, lemon juice. Flavor to choose: strawberry, passion fruit, cucumber, or spicy.",
-            c: "Bebidas", img: "URL_DE_TU_FOTO.jpg" 
+            c: "Bebidas", img: "" 
         },
         { 
             n_es: "Mojito tradicional", n_en: "Classic Mojito",
             p: 355, d_es: "Ron Diplomático mantuano, jugo de limón, jarabe natural y menta fresca. Opciones de sabores: canela, chocolate o fresa.", 
             d_en: "Diplomatico mantuano rum, lime juice, simple syrup and fresh mint. Flavor options: cinnamon, chocolate and strawberry.",
-            c: "Bebidas", img: "URL_DE_TU_FOTO.jpg" 
+            c: "Bebidas", img: "" 
         },
         { 
             n_es: "Cielito Oaxaqueño", n_en: "Oaxacan Sky",
             p: 390, d_es: "Mezcal, licor de violetas, arándano y escarcha de sal de gusano.", 
             d_en: "Mezcal, violet liqueur, cranberry, and worm salt rim.",
-            c: "Bebidas", img: "URL_DE_TU_FOTO.jpg" 
+            c: "Bebidas", img: "" 
         },
         { 
             n_es: "Margarita Golden", n_en: "Golden Margarita",
             p: 385, d_es: "Tequila Herradura reposado, grand marnier, jugo de limón.", 
             d_en: "Herradura reposado tequila, grand marnier, lemon juice.",
-            c: "Bebidas", img: "URL_DE_TU_FOTO.jpg" 
+            c: "Bebidas", img: "" 
         },
         { 
             n_es: "Tulum sunset", n_en: "Tulum sunset",
             p: 395, d_es: "Whisky Jack Daniel's, campari, jugo de toronja, miel y agua quina.", 
             d_en: "Jack Daniel's Whiskey, campari, grapefruit juice, honey and quina.",
-            c: "Bebidas", img: "URL_DE_TU_FOTO.jpg" 
+            c: "Bebidas", img: "" 
         },
         { 
             n_es: "Alebrije", n_en: "Alebrije",
             p: 355, d_es: "Mezcal amarás joven, chartreuse, jugo de piña, cilantro y jalapeño.", 
             d_en: "Amaras joven mezcal, chartreuse, pineapple juice, cilantro and jalapeño.",
-            c: "Bebidas", img: "URL_DE_TU_FOTO.jpg" 
+            c: "Bebidas", img: "" 
         },
         { 
             n_es: "Ana y José", n_en: "Ana y Jose",
             p: 385, d_es: "Mezcal 400 conejos blanco, Ron Diplomático Mantuano, pulpa de mango, piña, manzana y maracuyá.", 
             d_en: "400 conejos white mezcal, Diplomatico Mantuano rum, mango pulp, pineapple, apple and passion fruit.",
-            c: "Bebidas", img: "URL_DE_TU_FOTO.jpg" 
+            c: "Bebidas", img: "" 
         },
         { 
-            n_es: "Masaje Relajante Ana y José", n_en: "Ana & José Relaxing Massage", 
-            p: 2100, d_es: "60 min de relajación profunda con aceites orgánicos.", 
-            d_en: "60 min of deep relaxation.", 
+            n_es: "Apapacho", n_en: "Apapacho", 
+            p: 2460, d_es: "De origen náhuatl, apapacho signiﬁca abrazar con el alma, eso es lo que su cuerpo sentirá con este masaje de presión suave a media, en el que el sistema nervioso y muscular se sentirán relajados, dejando el estrés atrás. $2,460.00 MXN, 50 Min. / $2,665.00 MXN, 70 Min", 
+            d_en: "Náhuatl origin, apapacho means to embrace with the soul, and that is what your body will feel with this massage of soft to medium pressure, in which the nervous and muscular systems will feel relaxed, leaving stress behind. 2,460.00 pesos, 50 Min. / $2,665.00 pesos, 70 Min", 
             c: "Spa", img: "https://i.postimg.cc/XNDx4vr8/magic-edit-TUFISV9WRFFCMj-Qj-MSM4ODdh-Njg1Yz-U4Mm-I3OGI1ZWY4YWJi-NTI0Yz-Zl-Yz-Fk-My-M0-20260507-0847.jpg" 
         },
+        { 
+            n_es: "TRATAMIENTO MEXICANO ANTI-EDAD", n_en: "MEXICAN ANTI AGING TREATMENT", 
+            p: 3075, d_es: "Tratamiento remineralizante y antioxidante a base de chaya, pimiento, entre otros ingredientes naturales que renovarán completamente la piel. Este servicio inicia con una exfoliación, seguido de una envoltura con mascarilla y ﬁnaliza con la aplicación de una crema hidratante que sellará sus beneﬁcios. $ 3075.00 MXN, 90 Min.", 
+            d_en: "Remineralizing and antioxidant treatment based on chaya, bell pepper, among other natural ingredients that completely renew the skin. This service begins with an exfoliation, followed by a body wrap with a mask, and ends with the application of a moisturizing cream that seals its beneﬁts. $ 3075.00 pesos, 90 Min.", 
+            c: "Spa", img: "https://i.postimg.cc/XNDx4vr8/magic-edit-TUFISV9WRFFCMj-Qj-MSM4ODdh-Njg1Yz-U4Mm-I3OGI1ZWY4YWJi-NTI0Yz-Zl-Yz-Fk-My-M0-20260507-0847.jpg" 
+        },
+         { 
+            n_es: "FACIAL INTI", n_en: "INTI FACIAL", 
+            p: 2214, d_es: "Facial enfocado en limpiar profundamente y eliminar las impurezas en la piel creadas naturalmente por nuestro cuerpo y por la exposición ambiental, teniendo como resultado una renovación celular de la piel, una textura tersa y un rostro luminoso. El tratamiento se personaliza según el tipo de piel. $ 2214.00 MXN 50 min", 
+            d_en: "Facial focused on deep cleansing and eliminating impurities in the skin created naturolly by our body ond environmentol exposure, resulting in a cellulor renewal of the skin, a smooth texture ond a luminous face. The treatment is personolized occording to the skin type. $ 2214.00 pesos 50 min", 
+            c: "Spa", img: "https://i.postimg.cc/XNDx4vr8/magic-edit-TUFISV9WRFFCMj-Qj-MSM4ODdh-Njg1Yz-U4Mm-I3OGI1ZWY4YWJi-NTI0Yz-Zl-Yz-Fk-My-M0-20260507-0847.jpg" 
+        },
+         { 
+            n_es: "EXFOLIACIÓN CON COPAL", n_en: "BODY EXFOLIATION WITH COPAL", 
+            p: 2460, d_es: "Renueve su piel y su energía con esta exfoliación de copal, una resina mexicana que desde épocas prehispánicas se ha usado en rituales y temazcales y que dejará su piel tersa y preparada para recibir una hidratación profunda con una crema a base de aloe vera, completando este servicio dedicado a la piel. $ 2460.00 MXN 60 min", 
+            d_en: "Renew your skin and your energy with this copal exfoliation, a Mexican resin that since pre-Hispanic times has been used in rituals and temazcales, leaving your skin smooth and ready to receive deep hydration with an aloe vera-based cream, completing this service dedicated to the skin. $ 2460.00 pesos 60 min", 
+            c: "Spa", img: "https://i.postimg.cc/XNDx4vr8/magic-edit-TUFISV9WRFFCMj-Qj-MSM4ODdh-Njg1Yz-U4Mm-I3OGI1ZWY4YWJi-NTI0Yz-Zl-Yz-Fk-My-M0-20260507-0847.jpg" 
+        },
+          { 
+            n_es: "TRATAMIENTO DE XOCOLATL MEXICANO", n_en: "MEXICAN XOCOLATL TREATMENT", 
+            p: 2460, d_es: "Masaje relajante realizado con chocolate mexicano, lleno de antioxidantes y propiedades hidratantes, dejará como resultado una piel suave y nutrida. $2,460.00 MXN, 60 Min servicio individual. / $ 4182.00 MXN, 60 Min en pareja", 
+            d_en: "Relaxing massage with Mexican chocolate, full of antioxidants and moisturizing properties, leaving your skin soft and nourished. 2,460.00 pesos, 50 Min. / $2,460.00 pesos, 60 Min for person / $ 4182.00 pesos 60 Min for two person", 
+            c: "Spa", img: "https://i.postimg.cc/XNDx4vr8/magic-edit-TUFISV9WRFFCMj-Qj-MSM4ODdh-Njg1Yz-U4Mm-I3OGI1ZWY4YWJi-NTI0Yz-Zl-Yz-Fk-My-M0-20260507-0847.jpg" 
+        },
+         { 
+            n_es: "TRATAMIENTO EQUILIBRANTE Tl'AL KIIN", n_en: "Tl'AL KIIN AFTER SUN TREATMENT", 
+            p: 2460, d_es: "Tratamiento pensado en aquellas pieles que han sido dañadas por el sol o que son sensibles. Entre sus ingredientes se encuentran la miel de abeja, tuna y agave, que recobrarán el equilibrio natural de la piel; disfrutará de una mascarilla corporal seguida de una hidratación profunda a base de aloe vera. $2,460.00 MXN, 60 Min.", 
+            d_en: "Treatment designed for those skins that hove been damaged by the sun, among its ingredients ore honey, prickly peor ond agave thot will recover the natural balance of the skin; you will enjoy a body mask followed by o deep moisturizing with aloe vera. 2,460.00 pesos, 50 Min.", 
+            c: "Spa", img: "https://i.postimg.cc/XNDx4vr8/magic-edit-TUFISV9WRFFCMj-Qj-MSM4ODdh-Njg1Yz-U4Mm-I3OGI1ZWY4YWJi-NTI0Yz-Zl-Yz-Fk-My-M0-20260507-0847.jpg" 
+        },
+         { 
+            n_es: "CHAN'PAAL", n_en: "CHAN'PAAL", 
+            p: 1045, d_es: "Un masaje pensado en los más pequeños, con la ﬁna intención de relajar sus sentidos y generar calma en su cuerpo a través de una activación sanguínea que fortalecerá el sistema nervioso y el sistema inmunológico. Recomendado para pequeños +1 año. $ 1045.00 MXN, 20 Min.", 
+            d_en: "A massage designed for the little ones, with the intention of relaxing their senses and bringing calmness to their body through blood circulation activation, strengthening the nervous and immune systems. Recommended for children +1 year. $ 1045.00 pesos, 20 Min.", 
+            c: "Spa", img: "https://i.postimg.cc/XNDx4vr8/magic-edit-TUFISV9WRFFCMj-Qj-MSM4ODdh-Njg1Yz-U4Mm-I3OGI1ZWY4YWJi-NTI0Yz-Zl-Yz-Fk-My-M0-20260507-0847.jpg" 
+        },
+    
         { 
             n_es: "Cena Romántica frente al Mar", n_en: "Romantic Oceanside Dinner", 
             p: 4800, d_es: "Montaje privado bajo las estrellas, menú de 4 tiempos.", 
@@ -514,10 +551,10 @@
         const horarios = {
             "Desayuno": { inicio: 7.5, fin: 11.75, texto: "7:30 AM - 11:45 AM" },
             "Lunch": { inicio: 11.5, fin: 18.0, texto: "11:30 AM - 6:00 PM" },
-            "Cena": { inicio: 18.01, fin: 22.5, texto: "6:01 PM - 10:30 PM" },
+            "Cena": { inicio: 18.0, fin: 22.5, texto: "6:00 PM - 10:30 PM" },
             "Postre": { inicio: 7.5, fin: 22.5, texto: "7:30 AM - 10:30 PM" },
             "Bebidas": { inicio: 9.0, fin: 22.5, texto: "9:00 AM - 10:30 PM" },
-            "Spa": { inicio: 0, fin: 24, texto: "9:00 AM - 5:00 PM" },
+            "Spa": { inicio: 0, fin: 24, texto: "9:00 AM - 5:00 PM / Pregunte por la promoción del día / Ask about today's special offer." },
             "Cena Romántica": { inicio: 0, fin: 24, texto: "24h Notice"},
         };
 
